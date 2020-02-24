@@ -1,29 +1,19 @@
-# README #
+## Summary
 
-This README would normally document whatever steps are necessary to get your application up and running.
+The CIS RHEL7 Linux Benchmark. https://benchmarks.cisecurity.org/tools2/linux/CIS_Red_Hat_Enterprise_Linux_7_Benchmark_v2.1.1.pdf
 
-### What is this repository for? ###
+This role is developed and tested against Red Hat Linux 7.x
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Playbook Execution (using tags)
 
-### How do I get set up? ###
+  * Run Level 1 tasks
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+ansible-playbook -i inv site.yml -t level-1
 
-### Contribution guidelines ###
+  * Run Section-3 tasks
 
-* Writing tests
-* Code review
-* Other guidelines
+ansible-playbook -i inv site.yml -t section-3
 
-### Who do I talk to? ###
+## Limitations
 
-* Repo owner or admin
-* Other community or team contact
+Currently, only the CIS Level 1 of the benchmark are implemented
