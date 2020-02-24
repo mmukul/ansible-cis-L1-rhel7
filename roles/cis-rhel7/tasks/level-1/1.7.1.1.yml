@@ -1,0 +1,10 @@
+---
+
+# 1.7.1.1 Ensure message of the day is configured properly
+
+- name: 1.7.1.1 - Ensure mingetty options are not used within motd
+  file:
+    path: "/etc/update-motd.d/30-banner"
+    state: absent
+  tags:
+    - 1.7.1.1

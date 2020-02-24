@@ -1,0 +1,8 @@
+---
+
+- include: precheck.yml
+  when: cis_apply_level_1_profile
+
+- include: "level-1.yml"
+  when: cis_apply_level_1_profile
+

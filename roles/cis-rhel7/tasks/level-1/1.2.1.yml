@@ -1,0 +1,11 @@
+---
+
+# 1.2.1 - Ensure package manager repositories are configured
+
+- name: 1.2.1 - Verify that repositories are configured correctly
+  command: yum repolist
+  args:
+    warn: false
+  changed_when: false
+  tags:
+    - "1.2.1"

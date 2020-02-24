@@ -1,0 +1,23 @@
+---
+
+# 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+
+- name: Check if /etc/ssh/sshd_config exists
+  stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+  tags:
+    - section-5
+    - "5.2.6"
+
+- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+  lineinfile:
+    regexp: "^IgnoreRhosts\\s+"
+    line: "IgnoreRhosts yes"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
+  notify:
+    - Restart sshd
+  tags:
+    - section-5
+    - "5.2.6"

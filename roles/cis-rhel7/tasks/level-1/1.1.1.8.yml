@@ -1,0 +1,21 @@
+---
+
+# 1.1.1.8 - Ensure mounting of FAT filesystems is disabled
+
+- name: 1.1.1.8 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_8
+  tags:
+    - section-1
+    - "1.1.1.8"
+
+- name: 1.1.1.8 - Ensure mounting of vfat filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install vfat"
+    line: "install vfat /bin/true"
+  when: modprobe_1_1_1_8.stat.exists is defined and modprobe_1_1_1_8.stat.exists
+  tags:
+    - section-1
+    - "1.1.1.8"

@@ -1,0 +1,23 @@
+---
+
+# 5.2.15 - Ensure SSH warning banner is configured
+
+- name: Check if /etc/ssh/sshd_config exists
+  stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+  tags:
+    - section-5
+    - "5.2.15"
+
+- name: 5.2.15 - Ensure SSH warning banner is configured
+  lineinfile:
+    regexp: "^Banner\\s+"
+    line: "Banner {{ cis_sshd_banner }}"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
+  notify:
+    - Restart sshd
+  tags:
+    - section-5
+    - "5.2.15"

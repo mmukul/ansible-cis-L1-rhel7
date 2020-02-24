@@ -1,0 +1,12 @@
+---
+
+- hosts: cis
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  become_user: root
+  ignore_errors: true
+  ignore_unreachable: true
+
+  roles:
+    - cis-rhel7 

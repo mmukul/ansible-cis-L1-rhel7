@@ -1,0 +1,10 @@
+---
+
+# 2.3.3 Ensure talk client is not installed
+
+- name: 2.3.3 - Ensure talk client is not installed
+  yum:
+    name: "talk"
+    state: absent
+  tags:
+    - "2.3.3"

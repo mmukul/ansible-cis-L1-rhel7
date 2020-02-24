@@ -1,0 +1,11 @@
+---
+
+# 2.3.2 Ensure rsh client is not installed
+
+- name: 2.3.2 - Ensure rsh client is not installed
+  yum:
+    name: "rsh"
+    state: absent
+  tags:
+    - section-2
+    - "2.3.2"

@@ -1,0 +1,16 @@
+---
+
+# 2.1.4 Ensure echo services are not enabled
+
+- name: 2.1.4 - Ensure echo services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: "{{ cis_echo_state }}"
+  with_items:
+    - echo-dgram
+    - echo-stream
+  when:  cis_xinetd_state != 'absent'
+  tags:
+    - section-2
+    - "2.1.4"

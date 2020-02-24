@@ -1,0 +1,26 @@
+---
+
+# 3.6.1 Ensure iptables/firewalld is installed
+
+- name: 3.6.1 - Ensure firewalld is installed
+  yum:
+    name: "{{ cis_firewalld_install.package }}"
+    state: "{{ cis_firewalld_install.state }}"
+  with_items:
+    - "{{ cis_firewalld_install }}"
+  when: cis_firewalld_install.state == "present"
+  tags:
+    - section-3
+    - "3.6.1"
+
+- name: 3.6.1 - Ensure firewalld is started
+  service:
+    name: "{{ cis_firewalld_install.service }}"
+    enabled: "{{ cis_firewalld_install.enabled }}"
+    state: "{{ cis_firewalld_install.rstate }}"
+  with_items:
+    - "{{ cis_firewalld_install }}"
+  when: cis_firewalld_install.state == "present"
+  tags:
+   - section-3
+   - "3.6.1"

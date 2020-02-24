@@ -1,0 +1,12 @@
+---
+
+# 1.7.1.5 Ensure permissions on /etc/issue are configured
+
+- name: 1.7.1.5 - Ensure permissions on /etc/issue are configured
+  file:
+    path: "/etc/issue"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - 1.7.1.5

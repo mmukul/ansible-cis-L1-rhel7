@@ -1,0 +1,21 @@
+---
+
+# 1.1.1.7 - Ensure mounting of udf filesystems is disabled
+
+- name: 1.1.1.7 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_7
+  tags:
+    - section-1
+    - "1.1.1.7"
+
+- name: 1.1.1.7 - Ensure mounting of udf filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install udf"
+    line: "install udf /bin/true"
+  when: modprobe_1_1_1_7.stat.exists is defined and modprobe_1_1_1_7.stat.exists
+  tags:
+    - section-1
+    - "1.1.1.7"

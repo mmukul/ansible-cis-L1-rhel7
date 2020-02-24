@@ -1,0 +1,29 @@
+---
+
+# 6.1.6 Ensure permissions on /etc/passwd- are configured
+
+- name: 6.1.6 - Discover permissions on /etc/passwd-
+  stat:
+    path: "/etc/passwd-"
+  register: cis_st
+  tags:
+    - section-6
+    - "6.1.6"
+
+- name: 6.1.6 - Display /etc/passd- file mode
+  debug:
+    msg: The file mode is {{ cis_st.stat.mode }} expecting 0600
+  tags:
+    - section-6
+    - "6.1.6"
+
+- name: 6.1.6 - Ensure permissions on /etc/passwd- are configured
+  file:
+    path: "/etc/passwd-"
+    owner: root
+    group: root
+    mode: 0600
+  when: cis_st.stat.mode != 0600
+  tags:
+    - section-6
+    - "6.1.6"

@@ -1,0 +1,22 @@
+---
+
+# 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured
+
+- name: Check if /etc/ssh/sshd_config exists
+  stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+  tags:
+    - section-5
+    - "5.2.1"
+
+- name: 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured
+  file:
+    path: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0600
+  when: sshd_config.stat.exists
+  tags:
+    - section-5
+    - "5.2.1"

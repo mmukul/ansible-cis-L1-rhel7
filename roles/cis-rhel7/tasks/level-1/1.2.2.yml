@@ -1,0 +1,21 @@
+---
+
+# 1.2.2 - Ensure gpgcheck is globally activated
+
+- name: 1.2.2 - Verify that gpgcheck is enabled in /etc/yum.conf
+  lineinfile:
+    regexp: "^gpgcheck"
+    line: "gpgcheck=1"
+    dest: "/etc/yum.conf"
+  tags:
+    - "1.2.2"
+
+- name: 1.2.2 - Verify that gpgcheck is enabled for all repositories in /etc/yum.repos.d
+  replace:
+    regexp: "^gpgcheck=0"
+    replace: "gpgcheck=1"
+    dest: "{{ item }}"
+  with_fileglob:
+    - /etc/yum.repos.d/*.repo
+  tags:
+    - "1.2.2"

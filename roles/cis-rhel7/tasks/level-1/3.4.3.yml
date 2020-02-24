@@ -1,0 +1,21 @@
+---
+
+# 3.4.3 Ensure /etc/hosts.deny is configured
+
+- name: 3.4.3 - Check if /etc/hosts.deny configuration file exists
+  stat:
+    path: "/etc/hosts.deny"
+  register: hosts_deny_3_4_3
+  tags:
+    - section-3
+    - "3.4.3"
+
+- name: 3.4.3 - Ensure /etc/hosts.deny is configured
+  lineinfile:
+    dest: "/etc/hosts.deny"
+    regexp: "^ALL:"
+    line: "ALL: ALL"
+  when: hosts_deny_3_4_3.stat.exists is defined and hosts_deny_3_4_3.stat.exists
+  tags:
+    - section-3
+    - "3.4.3"

@@ -1,0 +1,21 @@
+---
+
+# 5.6 Ensure access to the su command is restricted
+
+- name: 5.6 - Ensure access to the su command is restricted
+  lineinfile:
+    regexp: "^auth\\s+"
+    line: "auth required pam_wheel.so use_uid"
+    dest: "/etc/pam.d/su"
+  tags:
+    - section-5
+    - "5.6"
+
+- name: 5.6 - Configure wheel group members who can access the su command
+  lineinfile:
+    regexp: "^wheel:"
+    line: "wheel:x:10:{{ cis_wheel_group_members }}"
+    dest: "/etc/group"
+  tags:
+    - section-5
+    - "5.6"

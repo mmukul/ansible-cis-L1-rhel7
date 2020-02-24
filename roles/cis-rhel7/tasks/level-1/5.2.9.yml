@@ -1,0 +1,23 @@
+---
+
+# 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+
+- name: Check if /etc/ssh/sshd_config exists
+  stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+  tags:
+    - section-5
+    - "5.2.9"
+
+- name: 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+  lineinfile:
+    regexp: "^PermitEmptyPasswords\\s+"
+    line: "PermitEmptyPasswords no"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
+  notify:
+    - Restart sshd
+  tags:
+    - section-5
+    - "5.2.9"

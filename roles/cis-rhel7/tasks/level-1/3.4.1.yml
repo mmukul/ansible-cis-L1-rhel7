@@ -1,0 +1,11 @@
+---
+
+# 3.4.1 Ensure TCP Wrappers is installed
+
+- name: 3.4.1 - Ensure TCP Wrappers is installed
+  yum:
+    name: "tcp_wrappers"
+    state: latest
+  tags:
+    - section-3
+    - "3.4.1"

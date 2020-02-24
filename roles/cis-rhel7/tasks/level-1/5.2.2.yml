@@ -1,0 +1,22 @@
+---
+
+# 5.2.2 - Ensure SSH Protocol is set to 2
+
+- name: Check if /etc/ssh/sshd_config exists
+  stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+  tags:
+    - section-5
+    - "5.2.2"
+
+- name: 5.2.2 - Ensure SSH Protocol is set to 2
+  lineinfile:
+    regexp: "^Protocol\\s+"
+    line: "Protocol 2"
+    dest: "/etc/ssh/sshd_config"
+  notify: "Restart sshd"
+  when: sshd_config.stat.exists
+  tags:
+    - section-5
+    - "5.2.2"

@@ -1,0 +1,10 @@
+galaxy_info:
+  author: Mukul Malhotra
+  description: Idempotent CIS Benchmarks for RHEL/CentOS Linux 7
+  company: Ensono
+  min_ansible_version: 2.9
+  platforms:
+    - name: RHEL/CentOS
+      versions:
+      - 7.x
+

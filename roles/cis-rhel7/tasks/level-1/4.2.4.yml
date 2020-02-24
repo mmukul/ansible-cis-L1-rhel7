@@ -1,0 +1,21 @@
+---
+
+# 4.2.4 Ensure permissions on all logfiles are configured
+
+- name: 4.2.4 - Find logfiles in /var/log
+  shell: "find /var/log -type f"
+  register: find_logfiles_4_2_4
+  changed_when: false
+  tags:
+    - section-4
+    - "4.2.4"
+
+- name: 4.2.4 - Ensure permissions on all logfiles are configured appropriately
+  file:
+    path: "{{ item }}"
+    mode: 0730
+  with_items:
+    - "{{ find_logfiles_4_2_4.stdout_lines }}"
+  tags:
+    - section-4
+    - "4.2.4"

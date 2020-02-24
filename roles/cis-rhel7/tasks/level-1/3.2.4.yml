@@ -1,0 +1,30 @@
+---
+
+# 3.2.4 Ensure suspicious packets are logged
+
+- name: 3.2.4 - Ensure suspicious packets are logged
+  sysctl:
+    ignoreerrors: true
+    name: "{{ item.kernel_param }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - "{{ cis_v_3_2_4_ipv4_conf_all_log_martians }}"
+    - "{{ cis_v_3_2_4_ipv4_conf_default_log_martians }}"
+  tags:
+    - section-3
+    - "3.2.4"
+
+- name: 3.2.4 - Getting value for all suspicious packets from active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_4_kernel_param
+  changed_when: false
+  with_items:
+    - "{{ cis_v_3_2_4_ipv4_conf_all_log_martians }}"
+  tags:
+    - section-3
+    - "3.2.4"
+
+- name: 3.2.4 - Displaying value for all suspicious packets
+  debug:
+    msg: The value for kernel_param_value is {{ v_3_2_4_kernel_param.results[0].stdout }}
