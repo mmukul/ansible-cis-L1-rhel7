@@ -18,6 +18,6 @@ ansible-playbook -i inv site.yml -t section-3
 
 Currently, only the CIS Level 1 of the benchmark are implemented
 
-## Playbook Execution Recording
+## Execution Recording
 
 https://asciinema.org/a/NvgpeF6T5b5TGnkwAsB1GMBOj
