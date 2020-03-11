@@ -1,0 +1,7124 @@
+---
+
+- name: Create {{ ensono_dir }} directory
+  file: 
+    path: "{{ ensono_dir }}"
+    state: directory
+    recurse: yes
+  tags:
+    - ensfile
+    - 1.1.1.1
+    - level1
+
+- name: Create {{ ensono_file }} file
+  file: 
+    path: "{{ ensono_file }}"
+    state: touch
+  tags:
+    - ensfile
+    - 1.1.1.1
+    - level1
+
+- name: Initialization
+  #tags:
+   # - level1
+    #- section1
+    #- section2
+    #- section3
+    #- section4
+    #- section5
+    #- section6
+  blockinfile:
+    path: "{{ ensono_file }}"
+    block: |
+      1.1.1.1 Ensure mounting of cramfs filesystem is disabled: FALSE
+      1.1.1.2 Ensure mounting of freevxfs filesystem is disabled: FALSE
+      1.1.1.3 Ensure mounting of jffs2 filesystem is disableD: FALSE
+      1.1.1.4 Ensure mounting of hfs filesystems is disabled: FALSE
+      1.1.1.5 Ensure mounting of hfsplus filesystems is disabled: FALSE
+      1.1.1.6 Ensure mounting of squashfs filesystem is disabled: FALSE
+      1.1.1.7 Ensure mounting of udf filesystem is disabled: FALSE
+      1.1.1.8 Ensure mounting of FAT filesystems is disabled: FALSE
+      1.1.3 Ensure nodev option set on /tmp parition:  FALSE
+      1.1.4 Ensure nosuid option for /tmp partition:  FALSE
+      1.1.5 Ensure noexec option set on /tmp partition:  FALSE
+      1.1.8 Ensure nodev option set on /var/tmp/partition:  FALSE
+      1.1.9 Ensure nosuid option set on /var/tmp/partition:  FALSE
+      1.1.10 Ensure noexec option set on /var/tmp partition:  FALSE
+      1.1.14 Ensure nodev option set on /home partition:  FALSE
+      1.1.15 Ensure nodev option set on /dev/shm partition:  FALSE
+      1.1.16 Ensure nosuid option set on /dev/shm partition:  FALSE
+      1.1.17 Ensure noexec option set on /dev/shm partition:  FALSE
+      1.1.21 Ensure sticky bit is set on all world-writable directories:  FALSE
+      1.1.22 Ensure autofs is disabled:  FALSE
+      1.2.1 Ensure package manager repositories are configured:  FALSE
+      1.2.2 Ensure gpgcheck is globally activated:  FALSE
+      1.2.3 Ensure gpg keys are configured:  FALSE
+      1.2.4 Ensure Red Hat Network or Subscription Manager connection is configured:  FALSE
+      1.4.1 Ensure permissions on blootloader config are configured:  FALSE
+      1.5.1 Ensure core dumps are restricted:  FALSE
+      1.5.2 Ensure XD/NX/PAE support is enabled in BIOS:  FALSE
+      1.5.3 Ensure address space layout randomization (ASLR) is enabled:  FALSE
+      1.5.4 Ensure prelink is disabled:  FALSE
+      1.7.1.1 Ensure message of the day is configured properly:  FALSE
+      1.7.1.2 Ensure local login warning banner is configured properly:  FALSE
+      1.7.1.3 Ensure remote login warning banner is configured properly:  FALSE
+      1.7.1.4 Ensure permissions on /etc/motd are configured:  FALSE
+      1.7.1.5 Ensure permissions on /etc/issue are configured:  FALSE
+      1.7.1.6 Ensure permissions on /etc/issue.net are conifgured:  FALSE
+      1.7.2 Ensure GDM login banner is configured:  FALSE
+      1.8 Ensure updates, patches, and additional security software are installed:  FALSE
+      2.1.1.1 Ensure chargen-dgram services are not enabled:  FALSE
+      2.1.1.2 Ensure chargen-stream services are not enabled:  FALSE
+      2.1.2.1 Ensure daytime-dgram services are not enabled:  FALSE
+      2.1.2.2 Ensure daytime-stream services are not enabled:  FALSE
+      2.1.3.1 ENSURE discard-dgram services are not enabled:  FALSE
+      2.1.3.2 ENSURE discard-stream services are not enabled:  FALSE
+      2.1.4.1 Ensure echo-dgram services are not enabled:  FALSE
+      2.1.4.2 Ensure echo-stream services are not enabled:  FALSE
+      2.1.5.1 Ensure time-dgram services are not enabled:  FALSE
+      2.1.5.2 Ensure time-dgram services are not enabled:  FALSE
+      2.1.6 Ensure tftp server is not enabled:  FALSE
+      2.1.7 Ensure xinetd is not enabled:  FALSE
+      2.2.1.1 Ensure time synchronization is in use:  FALSE
+      2.2.1.2 Ensure ntp is configured:  FALSE
+      2.2.1.3 Ensure chrony is configured:  FALSE
+      2.2.2 Ensure X Window System is not installed:  FALSE
+      2.2.3 Ensure Avahi Server is not enabled:  FALSE
+      2.2.4 Ensure CUPS is not enabled:  FALSE
+      2.2.5 Ensure DHCP Server is not enabled:  FALSE
+      2.2.6 Ensure LDAP server is not enabled:  FALSE
+      2.2.7 Ensure NFS on RPC are not enabled:  FALSE
+      2.2.8 Ensure DNS Server is not enabled:  FALSE
+      2.2.9 Ensure FTP Server is not enabled:  FALSE
+      2.2.10 Ensure HTTP server is not enabled:  FALSE
+      2.2.11 Ensure IMAP and POP3 server are not enabled:  FALSE
+      2.2.12 Ensure Samba is not enabled:  FALSE
+      2.2.13 Ensure Squid HTTP Proxy Server is not enabled:  FALSE
+      2.2.15 Ensure mail transfer agent is configured for local-only mode:  FALSE
+      2.2.16 Ensure NIS Server is not enabled:  FALSE
+      2.2.17 Ensure rsh server is not enabled:  FALSE
+      2.2.18 Ensure talk server is not enabled:  FALSE
+      2.2.19 Ensure telnet server is not enabled:  FALSE
+      2.3.1 Ensure NIS Client is not installed:  FALSE
+      2.3.2 Ensure rsh client is not installed:  FALSE
+      2.3.3 Ensure talk client is not installed:  FALSE
+      2.3.4 Ensure telnet client is not installed:  FALSE
+      2.3.5 Ensure ldap client is not installed:  FALSE
+      3.1.1 Ensure IP forwarding is disabled:  FALSE
+      3.1.2 Ensure packet redirect sending is disabled:  FALSE
+      3.2.1 Ensure source routed packets are not accepted:  FALSE
+      3.2.2 Ensure ICMP redirects are not accepted:  FALSE
+      3.2.3 Ensure secure ICMP redirects are not accepted:  FALSE
+      3.2.5 Ensure broadcast ICMP requests are ignored:  FALSE
+      3.2.6 Ensure bogus ICMP responses are ignored:  FALSE
+      3.2.7 Ensure Reverse Path Filtering is enabled:  FALSE
+      3.2.8 Ensure TCP SYN Cookies are enabled:  FALSE
+      3.3.1 Ensure IPv6 router advertisements are not accepted:  FALSE
+      3.3.2 Ensure IPv6 redirects are not accepted:  FALSE
+      3.3.3 Ensure IPv6 is disabled:  FALSE
+      3.4.1 Ensure TCP wrappers are installed:  FALSE
+      3.4.4 Ensure permissions on /etc/hosts.allow are conifgured:  FALSE
+      3.4.5 Ensure permissions on /etc/hosts.deny are 644:  FALSE
+      3.5.1 Ensure DCCP is disabled:  FALSE
+      3.5.2 Ensure SCTP is disabled:  FALSE
+      3.5.3 Ensure RDS is disabled:  FALSE
+      3.5.4 Ensure TIPC is disabled:  FALSE
+      3.6.1 Ensure iptables is installed:  FALSE
+      3.6.2 Ensure default deny firewall policy:  TBD
+      3.6.3 Ensure loopback traffic is configured:  TBD
+      3.6.4 Ensure outbound and established connections are configured: TDB
+      3.6.5 Ensure firewall rules exist for all open ports:  FALSE
+      3.7 Ensure wireless interfaces are disabled:  N/A
+      4.2.1.1 Ensure rsyslog service is enabled:  FALSE
+      4.2.1.2 Ensure logging is configured:  TBD
+      4.2.1.3 Ensure rsyslog default file permissions are configured:  FALSE
+      4.2.1.4 Ensure rsyslog is configured to send logs to a remote log host:  TBD
+      4.2.1.5 Ensure remote rsyslog messages are only accepted on designated log hosts: TBD
+      4.2.3 Ensure rsyslog is installed: FALSE
+      4.2.4 Ensure permissions on all logfiles are configured: FALSE
+      4.3 Ensure logrotate is configured: TBD
+      5.1.1 Ensure cron daemon is enabled:  FALSE
+      5.1.2 Ensure permissions on /etc/crontab are configured:  FALSE 
+      5.1.3 Ensure permissions on /etc/cron.hourly are configured:  FALSE
+      5.1.4 Ensure permissions on /etc/cron.daily are configured:  FALSE
+      5.1.5 Ensure permissions on /etc/cron.weekly are configured:  FALSE
+      5.1.6 Ensure permissions on /etc/cron.monthly are configured:  FALSE
+      5.1.7 Ensure permissions on /etc/cron.d are configured:  FALSE
+      5.1.8 Ensure at/cron is restricted to authorized users: TBDG
+      5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured:  FALSE
+      5.2.2 Ensure SSH Protocol is set to 2:  FALSE
+      5.2.3 Ensure SSH LogLevel is set to INFO:  FALSE
+      5.2.4 Ensure SSH X11 forwarding is disabled:  FALSE
+      5.2.5 Ensure SSH MaxAuthTries is set to 4 or less:  FALSE
+      5.2.6 Ensure SSH IgnoreRHosts is enabled:  FALSE
+      5.2.7 Ensure SSH HostbasedAuthentication is disabled:  FALSE 
+      5.2.8 Ensure SSH root login is disabled:  FALSE
+      5.2.9 Ensure SSH PermitEmptyPasswords is disabled:  FALSE
+      5.2.11 Ensure SSH Only approved ciphers are used:  FALSE
+      5.2.12 Ensure only approved MAC alogithms are used:  FALSE
+      5.2.14 Ensure SSH LoginGraceTime is set to one minute or less:  FALSE
+      5.2.15 Ensure SSH access is limited: TBD
+      5.2.16 Ensure SSH warning banner is configured:  FALSE
+      5.3.1 Ensure password creation requires are configured:  FALSE
+      5.3.2 Ensure lockout for failed password attempts is configured:  FALSE
+      5.3.3 Ensure password re-use is limited:  FALSE
+      5.3.4 Ensure password hashing algorithm is SHA-512:  FALSE
+      5.4.1.1 Ensure password expiration is 90 days or less:  FALSE 
+      5.4.1.2 Ensure minimum days between password changes is 7 or more:  FALSE
+      5.4.1.3 Ensure password expiration warning days is 7 or more:  FALSE
+      5.4.1.4 Ensure inactive password lock is 30 days or less:  FALSE
+      5.4.1.5 Ensure system accounts are non-login:  FALSE
+      5.4.1.6 Ensure default group for root account is GID 0:  FALSE
+      5.4.1.7 Ensure default user umask is 027 or more restrictive:  FALSE
+      5.6 Ensure access to the su command is restricted to wheel group:  FALSE
+      6.1.2 Ensure permissions on /etc/passwd are configured:  FALSE
+      6.1.3 Ensure permissions on /etc/shadow are configured:  FALSE
+      6.1.4 Ensure permissions on /etc/group are configured:  FALSE
+      6.1.5 Ensure permissions on /etc/gshadow are configured:  FALSE
+      6.1.6 Ensure permissions on /etc/passwd- are configured:  FALSE
+      6.1.7 Ensure permissions on /etc/shadow- are configured:  FALSE
+      6.1.8 Ensure permissions on /etc/group- are configured:  FALSE
+      6.1.9 Ensure permissions on /etc/gshadow- are configured:  FALSE
+      6.1.10 Ensure no world writable files exist:  FALSE
+      6.1.11 Ensure no unowned files or directories exist:  FALSE
+      6.1.12 Ensure no ungrouped files or directories exist:  FALSE
+      6.1.13 Audit SUID executables: Requires Manual Review
+      6.1.14 Audit SGID executables: Requires Manual Review
+      6.2.1 Ensure password fields are not empty:  FALSE
+      6.2.2 Ensure no legacy "+" entries exist in /etc/passwd:  FALSE
+      6.2.4 Ensure no legacy "+" entries exist in /etc/group:   FALSE
+      6.2.5 Ensure root is the only UID 0 account:  FALSE
+      6.2.6 Ensure root PATH integrity:  FALSE
+      6.2.7 Ensure all uses' home directories exist:  FALSE
+      6.2.8 Ensure users' home directories are permissions are 750 or more restrictive:  FALSE
+      6.2.9 Ensure users own their home directories:  FALSE
+      6.2.10 Ensure user' dot files are not group or world writable:  FALSE
+      6.2.11 Ensure no users have .forward files:  FALSE
+      6.2.12 Ensure no users have .netrc files:  FALSE
+      6.2.14 Ensure no users have .rhosts files:  FALSE
+      6.2.15 Ensure all groups in /etc/passwd exist in /etc/group:  FALSE
+      6.2.16 Ensure no duplicate UIDs exist:  FALSE
+      6.2.17 Ensure no duplicate GIDs exist:  FALSE
+      6.2.18 Ensure no duplicate user names exist:  FALSE
+      
+
+##### Common Task #####
+
+- name: Ensure all unwanted filesystems are disabled
+  lineinfile:
+    path: /etc/filesystems
+    regexp: "{{ item }}"
+    state: absent
+  when: audit == "FALSE"
+  with_items:
+     - cramfs
+     - freevxfs
+     - jffs2
+     - hfs
+     - hfsplus
+     - squashfs
+     - udf
+     - vfat
+  tags:
+     - 1.1.1.1
+     - 1.1.1.2
+     - 1.1.1.3
+     - 1.1.1.4
+     - 1.1.1.5
+     - 1.1.1.6
+     - 1.1.1.7
+     - 1.1.1.8
+     - level1
+
+##### Common Task #####
+
+- name: 1.1.1.1 - Remove cramfs module
+  modprobe:
+    name: cramfs
+    state: absent
+  register: cram
+  tags:
+    - 1.1.1.1
+    - section1
+    - level1
+
+- name: 1.1.1.1 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_conf }}"
+  register: cramfs
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+- name: 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_conf }}"
+    regexp: "^install cramfs"
+    line: "install cramfs /bin/true"
+  when: 
+     - cramfs.stat.exists is defined
+     - audit == "FALSE"
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+
+- name: 1.1.1.1 Check to ensure cramfs is absent from /etc/filesystems
+  shell: "grep -c ^cramfs /etc/filesystems || true "
+  register: checkcramfs
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+- name: 1.1.1.1 Check existence of cis conf
+  shell: "grep -c cramfs {{ cis_conf }} || true"
+  register: cramfsconf
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+- name: 1.1.1.1 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.1 "
+    line: "1.1.1.1 Ensure cramfs filesystem is disabled: PASS"
+  when: 
+     - checkcramfs.stdout == "0"
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+- name: 1.1.1.1 Record output as FAIL If It found
+  shell: "echo '1.1.1.1 Ensure cramfs filesystem is disabled: FAIL' >> {{ ensono_file }}"
+  when:
+     - checkcramfs.stdout != "0"
+     - cram.state != "absent"
+  tags:
+     - 1.1.1.1
+     - section1
+     - level1
+
+
+- name: 1.1.1.2 Remove freevxfs module
+  modprobe:
+    name: freevxfs
+    state: absent
+  register: free
+  tags:
+    - 1.1.1.2
+    - section1
+    - level1
+
+- name: 1.1.1.2 Check to ensure freevxfs is absent from /etc/filesystems
+  shell: "grep -c ^freevxfs /etc/filesystems || true "
+  register: checkfreevxfs
+  tags:
+    - 1.1.1.2
+    - section1
+    - level1
+
+- name: 1.1.1.2 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.2 "
+    line: "1.1.1.2 Ensure freevxfs filesystem is disabled: PASS"
+  when: 
+    - checkfreevxfs.stdout == "0"
+  tags:
+    - 1.1.1.2
+    - section1
+    - level1
+
+- name: 1.1.1.2 Record output as FAIL If found
+  shell: "echo '1.1.1.2 Ensure filesystem is disabled: FAIL' >> {{ ensono_file }}"
+  when:
+    - checkfreevxfs.stdout == "1"
+    - free.state != "absent"
+  tags:
+    - 1.1.1.2
+    - section1
+    - level1
+
+
+- name: 1.1.1.3 Check to ensure jffs2 is absent from /etc/filesystems
+  shell: "grep -c ^jffs2 /etc/filesystems || true "
+  register: checkjffs2
+  tags:
+    - 1.1.1.3
+    - section1
+    - level1
+
+- name: 1.1.1.3 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.3 "
+    line: "1.1.1.3 Ensure jffs2 filesystem is disabled: PASS"
+  when: checkjffs2.stdout == "0"
+  tags:
+    - 1.1.1.3
+    - section1
+    - level1
+
+- name: Record output as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.1.1.3 Ensure jffs2 filesystem is disabled: FAIL"
+  when: checkjffs2.stdout != "0"
+  tags:
+     - 1.1.1.3
+     - section1
+     - level1
+
+- name: 1.1.1.4 Check to ensure hfs is absent from /etc/filesystems
+  shell: "grep -c ^hfs$ /etc/filesystems || true "
+  register: checkhfs
+  tags:
+    - 1.1.1.4
+    - section1
+    - level1
+
+- name: 1.1.1.4 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.4 "
+    line: "1.1.1.4 Ensure hfs filesystem is disabled: PASS"
+  when: checkhfs.stdout == "0"
+  tags:
+    - 1.1.1.4
+    - section1
+    - level1
+
+- name: Record output as FAIL If It found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.1.1.4 Ensure hfs filesystem is disabled: FAIL"
+  when: checkhfs.stdout != "0"
+  tags:
+     - 1.1.1.4
+     - section1
+     - level1
+
+
+- name: 1.1.1.5 Check to ensure hfsplus is absent from /etc/filesystems
+  shell: "grep -c ^hfsplus$ /etc/filesystems || true"
+  register: checkhfsplus
+  tags:
+    - 1.1.1.5
+    - section1
+    - level1
+
+- name: 1.1.1.5 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.5 "
+    line: "1.1.1.5 Ensure hfsplus filesystem is disabled: PASS"
+  when:
+    checkhfsplus.stdout == "0"
+  tags:
+    - 1.1.1.5
+    - section1
+    - level1
+
+- name: Record output as FAIL If It found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.1.1.5 Ensure hfsplus filesystem is disabled: FAIL"
+  when: checkhfsplus.stdout != "0"
+  tags:
+     - 1.1.1.5
+     - section1
+     - level1
+
+- name: 1.1.1.6 Check to ensure squashfs is absent from /etc/filesystems
+  shell: "grep -c ^squashfs$ /etc/filesystems || true"
+  register: checksquashfs
+  tags:
+    - 1.1.1.6
+    - section1
+    - level1
+
+- name: 1.1.1.6 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.6 "
+    line: "1.1.1.6 Ensure squashfs filesystem is disabled: PASS"
+  when:
+    checksquashfs.stdout == "0"
+  tags:
+    - 1.1.1.6
+    - section1
+    - level1
+
+- name: 1.1.1.7 Check to ensure udf filesystem is absent from /etc/filesystems
+  shell: "grep -c ^udf$ /etc/filesystems || true"
+  register: checkudf
+  tags:
+    - 1.1.1.7
+    - section1
+    - level1
+
+- name: 1.1.1.7 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.7 "
+    line: "1.1.1.7 Ensure udf filesystem is disabled: PASS"
+  when:
+    checkudf.stdout == "0"
+  tags:
+     - 1.1.1.7
+     - section1
+     - level1
+
+- name: Remove vfat module
+  modprobe:
+    name: vfat
+    state: absent
+  register: vfat
+  tags:
+    - 1.1.1.8
+    - section1
+    - level1
+
+- debug:
+    var: vfat
+  tags: 1.1.1.8
+
+- name: 1.1.1.8 Check to ensure vfat filesystem is absent from /etc/filesystems
+  shell: "grep -c ^vfat$ /etc/filesystems || true"
+  register: checkvfat
+  tags:
+    - 1.1.1.8
+    - section1
+    - level1
+
+- name: 1.1.1.8 Record output as PASS if not found
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.1.8 "
+    line: "1.1.1.8 Ensure vfat filesystem is disabled: PASS"
+  when:
+    - checkvfat.stdout == "0"
+  tags:
+    - 1.1.1.8
+    - section1
+    - level1
+
+- name: 1.1.1.8 Record output as FAIL if found
+  shell: "echo '1.1.1.8 Ensure vfat filesystem is disabled: FAIL' >> {{ ensono_file }}"
+  when:
+    - checkvfat.stdout != "0"
+    - vfat.state != "absent"
+  tags:
+    - 1.1.1.8
+    - section1
+    - level1
+
+
+
+- name: 1.1.3 Verify /tmp partition existence
+  shell: "cat /etc/fstab |grep -c /etc/fstab"
+  register: mountmp
+  tags:
+    - 1.1.3
+    - section1
+    - level1
+
+- name: 1.1.3 Ensure nodev option for /tmp partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.3 "
+    line:  "1.1.3 Ensure nodev option for /tmp partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/tmp"
+    - item.options | regex_search('(nodev)') == "nodev"
+    - mountmp.rc == "0"
+    - audit == "FALSE"
+  tags:
+    - 1.1.3
+    - section1
+    - level1
+
+- name: 1.1.4 Ensure nosuid option for /tmp partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.4 "
+    line:  "1.1.4 Ensure nosuid option for /tmp partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/tmp"
+    - item.options | regex_search('(nosuid)') == "nosuid"
+    - audit == "FALSE"
+  tags:
+    - 1.1.4
+    - section1
+    - level1
+
+- name: 1.1.5 Ensure noexec option for /tmp partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.5 "
+    line:  "1.1.5 Ensure noexec option for /tmp partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/tmp"
+    - item.options | regex_search('(noexec)') == "noexec"
+    - mountmp.rc == "0"
+    - audit == "FALSE"
+  tags:
+    - 1.1.5
+    - section1
+    - level1
+
+- name: 1.1.8 Ensure nodev option for /var/tmp partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.8 "
+    line:  "1.1.8 Ensure nodev option for /var/tmp partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/var/tmp"
+    - item.options | regex_search('(nodev)') == "nodev"
+    - mountmp.rc == "0"
+    - audit == "FALSE"
+  tags:
+    - 1.1.8
+    - section1
+    - level1
+
+- name: 1.1.10 Ensure nosuid option for /var/tmp partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.10 "
+    line:  "1.1.10 Ensure nodev option for /var/tmp partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/var/tmp"
+    - item.options | regex_search('(nosuid)') == "nosuid"
+    - audit == "FALSE"
+  tags:
+    - 1.1.10
+    - section1
+    - level1
+
+- name: 1.1.14 Ensure nodev option for /home partition.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.14 "
+    line:  "1.1.14 Ensure nodev option for /home partition: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/home"
+    - item.options | regex_search('(nodev)') == "nodev"
+    - audit == "FALSE"
+  tags:
+    - 1.1.14
+    - section1
+    - level1
+
+- name: 1.1.15 Ensure nodev option for /dev/shm mount point.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.15 "
+    line:  "1.1.15 Ensure nodev option for /dev/shm mount point: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/dev/shm"
+    - item.options | regex_search('(nodev)') == "nodev"
+    - audit == "FALSE"
+  tags:
+    - 1.1.15
+    - section1
+    - level1
+
+- name: 1.1.16 Ensure nosuid option for /dev/shm mount point.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.16 "
+    line:  "1.1.16 Ensure nosuid option for /dev/shm mount point: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/dev/shm"
+    - item.options | regex_search('(nodev)') == "nouid"
+    - audit == "FALSE"
+  tags:
+    - 1.1.16
+    - section1
+    - level1
+
+- name: 1.1.17 Ensure noexec option for /dev/shm mount point.
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.17 "
+    line:  "1.1.17 Ensure noexec option for /dev/shm mount point: PASS"
+  with_items: "{{ ansible_mounts }}"
+  when: 
+    - item.mount == "/dev/shm"
+    - item.options | regex_search('(noexec)') == "noexec"
+    - audit == "FALSE"
+  tags:
+    - 1.1.17
+    - section1
+    - level1
+
+- name: 1.1.21 Ensure sticky bit is set on all world-writable directories
+  shell: "find / -not -type l -type d -perm -o+w | xargs -I {} chmod 1777 {}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.1.21
+    - section1
+    - level1
+
+- name: 1.1.21 Ensure sticky bit is set on all world-writeable directories (check if any)
+  shell: "find / -not -type l -type d -perm -o+w  | wc -l "
+  register: checkworldwriteabledir
+  tags:
+    - 1.1.21
+    - section1
+    - level1
+
+- name: 1.1.21 Ensure sticky bit is set on all world-writeable directories 
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.21 "
+    line:  "1.1.21 Ensure sticky bit is set on all world-writeable directories: PASS"
+  when:
+    - checkworldwriteabledir.stdout == "0"
+  tags:
+    - 1.1.21
+    - section1
+    - level1
+
+- name: 1.1.22 Determine whether or not autofs is installed
+  shell: "rpm -qa | grep -c ^autofs || true"
+  register: checkautofs
+  tags:
+    - 1.1.22
+    - section1
+    - level1
+
+- name: 1.1.22 Disable Automount Check to see if disabled
+  shell: "systemctl list-unit-files autofs.service | grep -c enabled || true" 
+  register: checkautofslevel
+  tags:
+    - 1.1.22
+    - section1
+    - level1
+
+- name: 1.1.22 Debug checkautofslevel
+  debug:
+    msg: "{{ checkautofslevel.stdout }}"
+  tags:
+    - 1.1.22
+    - section1
+    - level1
+
+- name: 1.1.22 Disable Automount or autofs
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.1.22 "
+    line:  "1.1.22 Ensure autofs is disabled. Autofs is installed but not active: PASS"
+  when:
+    - checkautofs.stdout == "0"
+    - checkautofslevel.stdout == "0"
+  tags:
+    - 1.1.22
+    - section1
+    - level1
+
+- name: 1.2.2 Ensure gpgcheck is globally actived in /etc/yum.conf
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: "^gpgcheck"
+    line: "gpgcheck=1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.2.2
+    - section1
+    - level1
+
+- name: 1.2.2 Ensure gpgcheck is globally actived
+  shell: "grep -c -E '(gpgcheck=1)|(gpgcheck = 1)' /etc/yum.conf || true "
+  register: yumgpgcheck
+  tags:
+    - 1.2.2
+    - section1
+    - level1
+
+- name: 1.2.2 Ensure gpgcheck is globally actived and update ledger
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.2.2 "
+    line:  "1.2.2 Ensure gpgcheck is globally activated: PASS"
+  when:
+    yumgpgcheck.stdout == "1" 
+  tags:
+    - 1.2.2
+    - section1    
+    - level1
+
+- name: 1.2.4 Check to see if host is subscribed to Red Hat Subscription Manager
+  shell: "subscription-manager status | awk 'FNR ==4 {print $3}'"
+  when:
+    - ansible_distribution == "RedHat" or ansible_distribution == "CentOS"
+    - ansible_distribution_major_version <= "6"
+  register: checksubmgr
+  tags:
+    - 1.2.4
+    - section1  
+    - level1
+
+- name: 1.2.4 debug ansible_distribution
+  shell: "echo {{ansible_distribution}}"
+  tags:
+    - 1.2.4
+    - section1
+    - level1
+
+- name: 1.2.4 Set to N/A when not Redhat
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.2.4 "
+    line: "1.2.4 Check Redhat subscription-manager access (not redhat):  N/A"
+  when:
+    - ansible_distribution != "RedHat"
+  tags:
+    - 1.2.4
+    - section1
+    - level1
+
+- name: 1.2.4 Check to see if host is subscribed to RHSM - if yes set to PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.2.4 "
+    line: "1.2.4 Check if server is subscribed to RedHat Subscription Manager (RHSM):  PASS"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - checksubmgr.stdout == "Current"
+  tags:
+    - 1.2.4
+    - section1
+    - level1
+
+- name: 1.3.1 Determine whether or not aide is installed
+  shell: "yum list installed |grep aide"
+  register: checkaide
+  ignore_errors: yes
+  tags:
+    - 1.3.1
+    - section1
+    - level1
+
+- name: 1.3.1 Disable Automount (aka autofs)
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.3.1 "
+    line:  "1.3.1 Ensure aide is installed.  Aide is installed: PASS"
+  when:
+    - checkaide.stdout != "0"
+  tags:
+    - 1.3.1
+    - section1
+    - level1
+
+- name: 1.3.1 Enable Aide
+  shell: "chkconfig --level 345 autofs on"
+  when:
+    - ansible_distribution_major_version <= "6"
+    - checkaide.stdout != "0"
+    - audit == "FALSE"
+  tags:
+    - 1.3.1
+    - section1
+    - level1
+
+- name: 1.4.1 Ensure permissions on bootloader config are configured (RHEL5/6)
+  file:
+    path: /boot/grub/grub.cfg
+    state: touch
+    mode: "o-rwx"
+  when:
+    - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "5"
+    - audit == "FALSE"
+  tags:
+    - 1.4.1
+    - section1
+    - level1
+
+
+- name: 1.4.1 Tag check as PASS if /boot/grub/grub.cfg
+  shell: "ls -al /boot/grub/grub.cfg | cut -c8"
+  register: rhel56or
+  when:
+    - ansible_distribution_major_version == "6" 
+  tags:
+    - 1.4.1
+    - section1
+    - level1
+
+- name: 1.4.1 Tag check as PASS if /boot/grub/grub.cfg
+  shell: "ls -al /boot/grub/grub.cfg | cut -c9"
+  register: rhel56ow
+  when:
+    - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "5"
+  tags:
+    - 1.4.1
+    - section1
+    - level1
+
+- name: 1.4.1 Tag check as PASS if /boot/grub/grub.cfg is not world readable (RHEL5/6) 
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.4.1 "
+    line: "1.4.1 Check if /boot/grub/grub.cfg is not world readable or writeable (RHEL5/6):  PASS"
+  when:
+    - ansible_distribution_major_version == "5" or ansible_distribution_major_version == "6"
+    - rhel56or != "r" or rhel56or != "R"
+  tags:
+    - 1.4.1
+    - section1
+    - level1
+
+- name: 1.4.1 Tag check as PASS if /boot/grub/grub.cfg is not world writeable (RHEL5/6)
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^1.4.1 "
+    line: "1.4.1 Check if /boot/grub/grub.cfg is not world readable or writeable (RHEL5/6):  PASS"
+  when:
+    - ansible_distribution_major_version == "5" or ansible_distribution_major_version == "6"
+    - rhel56ow != "w" or rhel56ow !="W" 
+  tags:
+    - 1.4.1
+    - section1
+    - level1
+
+- name: 1.5.1 Ensure core dumps are restricted for suid programs
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "fs.suid_dumpable"
+    line: "fs.suid_dumpable = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- name: 1.5.1 Ensure core dumps are limited via /etc/security/limits.conf file
+  lineinfile:
+    path: /etc/security/limits.conf
+    insertafter: EOF
+    state: present
+    line: "* hard core 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- name: 1.5.1 Ensure core dumps are restricted on SUID programs (determine state of fs.suid_dumpable)
+  shell: "sysctl fs.suid_dumpable | awk '{ print $3 }'"
+  register: coredumpable
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- name: 1.5.1  Ensure core dumps are restricted on SUID programs and write PASS is fs.suid_dumpable=0
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.1 Ensure core dumps are restricted on SUID programs: PASS"
+    regexp: "^1.5.1 "
+  when:
+    - coredumpable.stdout == "0"
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+  
+- name: 1.5.1 Ensure core dumps are restricted based on limits.conf
+  shell: "grep core /etc/security/limits.conf | grep ^'*' | grep soft | grep 0 | wc -l"
+  register: hardcore
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- shell: "echo {{ hardcore.stdout }}" 
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- name: 1.5.1 Ensure core dumps are restricted in limits.conf set to true if wc is 1
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.1.1 Ensure core dumps are restricted in /etc/security/limits.conf: PASS"
+    regexp: "^1.5.1.1 "
+  when:
+    - hardcore.stdout == "1"
+  tags:
+    - 1.5.1
+    - section1
+    - level1
+
+- name: 1.5.2 Ensure XD/PAE/NX support is enabled in BIOS
+  shell: " grep -m1 -E '(pae|nx)' /proc/cpuinfo | wc -l"
+  register: paesupport
+  tags:
+    - 1.5.2
+    - section1
+    - level1
+
+- name: 1.5.2 Ensure XD/PAE/NX support is enabled in Bios and set true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.2 Ensure XD/PAE/NX supprt is enabled in BIOS: PASS"
+    regexp: "^1.5.2 "
+  when:
+    - paesupport.stdout == "1"
+  tags:
+    - 1.5.2
+    - section1
+    - level1
+
+- name: 1.5.3 Ensure ASLR is enable for memory layout
+  shell: "sysctl -a --pattern kernel.randomize_va_space | awk '{ print $3 }'"
+  register: aslr
+  tags:
+    - 1.5.3
+    - section1
+    - level1
+
+- name: 1.5.3 If ASLR is enabled in kernel set to true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.3 Ensure ASLR is enabled in kernel: PASS"
+    regexp: "^1.5.3 "
+  when:
+    - aslr.stdout != "0"
+  tags:
+    - 1.5.3
+    - section1
+    - level1
+
+- name: 1.5.4 Touch /etc/sysconfig/prelink to create if it does not exist
+  file: state=touch dest=/etc/sysconfig/prelink owner=root mode=0664
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.5.4 Set prelink to disabled
+  lineinfile:
+    path: /etc/sysconfig/prelink
+    regexp: "^PRELINKING="
+    line: "PRELINKING=no"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.5.4 Ensure prelink is disabled
+  shell: "[ -f /etc/sysconfig/prelink ] && echo exists || echo doesntexist"
+  register: prelinkexistence
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.5.4 Ensure prelink is disabled, set to false if missing config file
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.4 Ensure prelink is disabled -- missing config file /etc/sysconfig/prelink: FALSE"
+    regexp: "^1.5.4 "
+  when:
+    - prelinkexistence.stdout == "doesntexist"
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.5.4 Ensure prelink is disabled in config file /etc/sysconfig/prelink
+  shell: "grep ^PRELINKING /etc/sysconfig/prelink | awk -F\"=\" '{ print $2 }'"
+  register: prelink
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.5.4 Ensure prelink is disabled in config file
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.5.4 Ensure prelink is disabled in config file /etc/sysconfig/prelink: PASS"
+    regexp: "^1.5.4 "
+  when:
+    - prelink.stdout == "no"
+    - prelinkexistence.stdout == "exists"
+  tags:
+    - 1.5.4
+    - section1
+    - level1
+
+- name: 1.7.1.1 Create generic /etc/motd if one doesn't exist
+  shell: "cat /etc/motd | wc -l"
+  register: motd
+  tags:
+    - 1.7.1.1
+    - section1
+    - level1
+
+- name: 1.7.1.1 Touch /etc/motd to create if it does not exist
+  file: 
+   state: touch
+   dest: /etc/motd
+   owner: root
+   mode: 0664
+  tags:
+    - 1.7.1.1
+    - section1
+    - level1
+
+- name: 1.7.1.1 Create generic /etc/motd if one does not exist
+  lineinfile: dest=/etc/motd line="January 1, 1970 No new changes to system"
+  when:
+    - motd.stdout != "0"
+    - audit == "FALSE"
+  tags:
+    - 1.7.1.1
+    - section1
+    - level1
+
+- name: 1.7.1.1 if /etc/motd has nothing in it then fail the check
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.1 Ensure /etc/motd has content in it: PASS"
+    regexp: "^1.7.1.1 "
+  when:
+    - motd.stdout != "0"
+  tags:
+    - 1.7.1.1
+    - section1
+    - level1
+
+- name: 1.7.1.2 Determine if /etc/issue exists
+  shell: "cat /etc/issue | wc -l"
+  register: etcissue
+  tags:
+    - 1.7.1.2
+    - section1
+    - level1
+
+- debug:
+    var: etcissue
+  tags: 
+    - 1.7.1.2
+    - section1
+    - level1
+
+- name: 1.7.1.2 Ensure local login warning banner is configured /etc/issue
+  file:
+    state: touch
+    dest: /etc/issue
+    owner: root
+    mode: 0664
+  changed_when: false
+  tags:
+    - 1.7.1.2
+    - section1
+    - level1
+
+- name: 1.7.1.2 Create generic /etc/issue if one does not exist
+  blockinfile:
+    path: /etc/issue
+    marker: <!-- {mark} ENSONO MANAGED BLOCK -->    
+    block: |
+      X#########################################################X
+      X# This computer system is private property. Use of this #X
+      X# system is restricted to authorized users only and     #X
+      X# shall be limited to activities permitted under        #X
+      X# applicable law. In addition, users must comply with   #X
+      X# the owner's acceptable use and other applicable       #X
+      X# policies. Unauthorized access, use, or modification   #X
+      X# of this system is strictly prohibited and may result  #X
+      X# in criminal prosecution, civil action, or employee    #X
+      X# discipline. Users of this system should have no       #X
+      X# expectation of privacy irrespective of any security   #X
+      X# measures imposed by the owner of this system since    #X
+      X# such measures are solely for the benefit of the       #X
+      X# owner. Activities on this system may be monitored,    #X
+      X# recorded, and subject to audit. Use of this system,   #X
+      X# authorized or unauthorized, constitutes consent to    #X
+      X# such monitoring and recording.                        #X
+      X#########################################################X
+  when:
+    - etcissue.stdout == "0"
+    - audit == "FALSE"
+  tags:
+    - 1.7.1.2
+    - section1
+    - level1
+
+- name: 1.7.1.2 if /etc/issue has something in it then pass the check
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.2 Ensure /etc/issue has content in it: PASS"
+    regexp: "^1.7.1.2 "
+  when:
+    - etcissue.stdout != "0"
+  tags:
+    - 1.7.1.2
+    - section1
+    - level1
+
+- name: 1.7.1.3 Ensure remote login warning banner is configured /etc/issue.net
+  file:
+    state: touch
+    dest: /etc/issue.net
+    owner: root
+    mode: 0664
+  tags:
+   - 1.7.1.3
+   - section1
+   - level1
+
+- name: 1.7.1.3 Determine if /etc/issue.net exists
+  shell: "cat /etc/issue.net | wc -l"
+  register: etcissuenet
+  tags:
+   - 1.7.1.3
+   - section1
+   - level1
+
+- name: 1.7.1.3 Create generic /etc/issue.net if one does not exist
+  blockinfile:
+    path: /etc/issue.net
+    block: |
+      X#########################################################X
+      X# This computer system is private property. Use of this #X
+      X# system is restricted to authorized users only and     #X
+      X# shall be limited to activities permitted under        #X
+      X# applicable law. In addition, users must comply with   #X
+      X# the owner's acceptable use and other applicable       #X
+      X# policies. Unauthorized access, use, or modification   #X
+      X# of this system is strictly prohibited and may result  #X
+      X# in criminal prosecution, civil action, or employee    #X
+      X# discipline. Users of this system should have no       #X
+      X# expectation of privacy irrespective of any security   #X
+      X# measures imposed by the owner of this system since    #X
+      X# such measures are solely for the benefit of the       #X
+      X# owner. Activities on this system may be monitored,    #X
+      X# recorded, and subject to audit. Use of this system,   #X
+      X# authorized or unauthorized, constitutes consent to    #X
+      X# such monitoring and recording.                        #X
+      X#########################################################X
+  when:
+    - etcissuenet.stdout == "0"
+    - audit == "FALSE"
+  tags:
+   - 1.7.1.3
+   - section1 
+   - level1
+
+- name: 1.7.1.3 if /etc/issue.net has something in it then pass the check
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.3 Ensure /etc/issue.net has content in it: PASS"
+    regexp: "^1.7.1.3 "
+  when:
+    - etcissuenet.stdout != "0"
+  tags:
+   - 1.7.1.3
+   - section1
+   - level1
+
+- name: 1.7.1.4 Ensure permissions on /etc/motd are configured
+  file:
+    state: touch
+    owner: root
+    mode: 0644
+    dest: /etc/motd
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.7.1.4
+    - section1
+    - level1
+
+- name: 1.7.1.4 Get permissions on /etc/motd other write field
+  shell: "ls -al /etc/motd | cut -c9"
+  register: motdow
+  tags:
+    - 1.7.1.4
+    - section1
+    - level1
+
+- name: 1.7.1.4 Check permissions on /etc/motd other write field
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.4 Ensure /etc/motd is not world writeable: PASS"
+    regexp: "^1.7.1.4 "
+  when:
+    - motdow.stdout != "w" or motdow.stdout != "W"
+  tags:
+    - 1.7.1.4
+    - section1
+    - level1
+
+- name: 1.7.1.5 Ensure permissions on /etc/issue is configured
+  file:
+    state: touch
+    owner: root
+    mode: 0644
+    dest: /etc/issue
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.7.1.5
+    - section1
+    - level1
+
+- name: 1.7.1.5 get permissions on /etc/issue other write field
+  shell: "ls -al /etc/issue | cut -c9"
+  register: issueow
+  tags:
+    - 1.7.1.5
+    - section1
+    - level1
+
+- name: 1.7.1.5 check permissions on /etc/issue other write field
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.5 Ensure /etc/issue is not world writeable: PASS"
+    regexp: "^1.7.1.5 "
+  when:
+    - issueow.stdout != "w" or issueow.stdout != "W"
+  tags:
+    - 1.7.1.5
+    - section1
+    - level1
+
+- name: 1.7.1.6 Ensure permissions on /etc/issue.net is configured
+  file:
+    state: touch
+    owner: root
+    mode: 0644
+    dest: /etc/issue.net
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.7.1.6
+    - section1
+    - level1
+
+- name: 1.7.1.6 Get permissions on /etc/issue.net other write field
+  shell: "ls -al /etc/issue.net | cut -c9"
+  register: issuenetow
+  tags:
+    - 1.7.1.6
+    - section1
+    - level1
+
+- name: 1.7.1.6 Check permissions on /etc/issue.net other write field
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.1.6 Ensure /etc/issue.net is not world writeable: PASS"
+    regexp: "^1.7.1.6 "
+  when:
+    - issuenetow.stdout != "w" or issuenetow.stdout != "W"
+  tags:
+    - 1.7.1.6
+    - section1
+    - level1
+
+- name: 1.7.2 Ensure /etc/gdm directory exists
+  file:
+    state: directory 
+    path: /etc/gdm
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - 1.7.2
+    - section1
+    - level1
+
+- name: 1.7.2 Ensure /etc/gdm/custom.conf exists
+  file:
+    state: touch
+    dest: /etc/gdm/custom.conf
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - 1.7.2
+    - section1
+    - level1
+
+- name: 1.7.2 configure GDM banner for /etc/gdm/custom.conf block
+  copy:
+    src: ~/ansible/global/files/etc/gdm/custom.conf
+    dest: /etc/gdm/custom.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - audit == "FALSE"
+  tags:
+    - 1.7.2
+    - section1    
+    - level1
+
+- name: 1.7.2 Test to see if GDM banner text is configured
+  shell: "grep -c ^RemoteWelcome /etc/gdm/custom.conf || true"
+  register: gdmtext
+  tags:
+    - 1.7.2
+    - section1
+    - level1
+
+- debug:
+    var: gdmtext
+  tags:
+    - 1.7.2
+    - section1
+    - level1
+
+- name: 1.7.2 set GDM banner to PASS if it is configured
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "1.7.2 Ensure GDM banner message text is configured:  PASS"
+    regexp: "^1.7.2 "
+  when:
+    - gdmtext.stdout == "0"
+  tags:
+    - 1.7.2
+    - section1
+    - level1
+
+# Section 2
+- name: 2.1.7 Check to see if xinetd is installed
+  shell: "rpm -qa | grep -c xinetd || true"
+  register: xinetdinstalled
+  tags:
+    - 2.1.7
+    - section2
+    - level1
+
+- name: 2.1.7 If xinetd not installed, enter PASS into the report
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "2.1.7 Ensure xinetd is disabled (via not installed):  PASS"
+    regexp: "^2.1.7 "
+  when:
+    - xinetdinstalled.stdout == "0"
+  tags:
+    - 2.1.7
+    - section2
+    - level1
+
+- name: 2.1.7 Disabled xinetd if it is installed
+  shell: "chkconfig --level 123456 xinetd off"
+  when:
+    - ansible_distribution_major_version <= "6"
+    - xinetdinstalled.stdout == "0"
+    - audit == "FALSE"
+  tags:
+    - 2.1.7
+    - section2
+    - level1
+
+- name: 2.1.7 Check to see if xinetd is disabled
+  shell: "chkconfig --list xinetd | grep -c :on || true"
+  register: checkxinetdlevel
+  when:
+    - ansible_distribution_major_version <= "6"
+    - xinetdinstalled.stdout == "0"
+  tags:
+    - 2.1.7
+    - section2
+    - level1
+
+- name: 2.1.7 Report True if xinetd is installed, but disabled
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "2.1.7 Ensure xinetd is disabled if installed: PASS"
+    regexp: "^2.1.7 "
+  when:
+    - checkxinetdlevel.stdout == "0"
+  tags:
+    - 2.1.7
+    - section2
+    - level1
+
+- name: 2.1.1.1 Check chargen-dgram service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/chargen-dgram | awk '{ print $3 }'"
+  register: checkchargendgram
+  tags:
+    - 2.1.1.1
+    - section2
+    - level1
+
+- debug:
+    var: checkchargendgram
+  tags:
+    - 2.1.1.1
+    - section2
+    - level1
+
+- name: 2.1.1.1 Ensure chargen-dgram service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/chargen-dgram
+    regexp: "disable"
+    line: "        disable = yes"
+  when:
+    - checkchargendgram.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.1.1
+    - section2
+    - level1
+
+- name: 2.1.1.1 Mark PASS if chargen-dgram is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.1.1 "
+    line: "2.1.1.1 xinetd active, chargen-dgram disabled: PASS"
+  when:
+    - checkchargendgram.stdout == "yes"
+  tags:
+    - 2.1.1.1
+    - section2
+    - level1
+
+- name: 2.1.1.2 check chargen-stream service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/chargen-stream | awk '{ print $3 }'"
+  register: checkchargenstream
+  tags:
+    - 2.1.1.2
+    - section2
+    - level1
+
+- name: 2.1.1.2 Ensure chargen-stream service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/chargen-stream
+    regexp: "disable"
+    line: "        disable = yes"
+  when:
+    - checkchargenstream.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.1.2
+    - section2
+    - level1
+
+- name: 2.1.1.2 Mark PASS if chargen-stream is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.1.2 "
+    line: "2.1.1.2 xinetd active, chargen-stream disabled: PASS"
+  when:
+    checkchargenstream.stdout == "yes"
+  tags:
+    - 2.1.1.2
+    - section2
+    - level1
+
+- name: 2.1.2.1 Check daytime-dgram service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/daytime-dgram | awk '{ print $3 }'"
+  register: checkdaytimedgram
+  tags:
+    - 2.1.2.1
+    - section2
+    - level1
+
+- name: 2.1.2.1 Ensure daytime-dgram service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/daytime-dgram
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checkdaytimedgram.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.2.1
+    - section2
+    - level1
+
+- name: 2.1.2.1 Mark PASS if daytime-dgram is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.2.1 "
+    line: "2.1.2.1 xinetd active, daytime-dgram disabled: PASS"
+  when:
+    checkdaytimedgram.stdout == "yes"
+  tags:
+    - 2.1.2.1
+    - section2
+    - level1
+
+- name: 2.1.2.2 check daytime-stream service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/daytime-stream | awk '{ print $3 }'"
+  register: checkdaytimestream
+  tags:
+    - 2.1.2.2
+    - section2
+    - level1
+
+- name: 2.1.2.2 Ensure daytime-stream service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/daytime-stream
+    regexp: "disable"
+    line: "        disable = yes"
+  when:
+    - checkdaytimestream.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.2.2
+    - section2
+    - level1
+
+- name: 2.1.2.2 Mark PASS if daytime-stream is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.2.2 "
+    line: "2.1.2.2 xinetd active, daytime-stream disabled: PASS"
+  when:
+    - checkdaytimestream.stdout == "yes"
+  tags:
+    - 2.1.2.2
+    - section2
+    - level1
+
+- name: 2.1.3.1 Check discard-dgram service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/discard-dgram | awk '{ print $3 }'"
+  register: checkdiscarddgram
+  tags:
+    - 2.1.3.1
+    - section2
+    - level1
+
+- name: 2.1.3.1 Ensure discard-dgram service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/discard-dgram
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checkdiscarddgram.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.3.1
+    - section2
+    - level1
+
+- name: 2.1.3.1 Mark PASS if discard-dgram is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.3.1 "
+    line: "2.1.3.1 xinetd active, discard-dgram disabled: PASS"
+  when:
+    - checkdiscarddgram.stdout == "yes"
+  tags:
+    - 2.1.3.1
+    - section2
+    - level1
+
+- name: 2.1.3.2 Check discard-stream service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/discard-stream | awk '{ print $3 }'"
+  register: checkdiscardstream
+  tags:
+    - 2.1.3.2
+    - section2
+    - level1
+
+- name: 2.1.3.2 Ensure discard-stream service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/discard-stream
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checkdiscardstream.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.3.2
+    - section2
+    - level1
+
+- name: 2.1.3.2 Mark PASS if discard-stream is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.3.2 "
+    line: "2.1.3.2 xinetd active, discard-stream disabled: PASS"
+  when:
+    - checkdiscardstream.stdout == "yes"
+  tags:
+    - 2.1.3.2
+    - section2
+    - level1
+
+- name: 2.1.4.1 Check echo-dgram service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/echo-dgram| awk '{ print $3 }'"
+  register: checkechodgram
+  tags:
+    - 2.1.4.1
+    - section2
+    - level1
+
+- name: 2.1.4.1 Ensure echo-dgram service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/echo-dgram
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checkechodgram.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.4.1
+    - section2
+    - level1
+
+- name: 2.1.4.1 Mark PASS if echo-dgram is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.4.1 "
+    line: "2.1.4.1 xinetd active, echo-dgram disabled: PASS"
+  when:
+    - checkechodgram.stdout == "yes"
+  tags:
+    - 2.1.4.1
+    - section2
+    - level1
+
+- name: 2.1.4.2 Check echo-stream service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/echo-stream| awk '{ print $3 }'"
+  register: checkechostream
+  tags:
+    - 2.1.4.2
+    - section2
+    - level1
+
+- name: 2.1.4.2 Ensure echo-stream service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/echo-stream
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checkechostream.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.4.2
+    - section2
+    - level1
+
+- name: 2.1.4.2 Mark PASS if echo-stream is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.4.2 "
+    line: "2.1.4.2 xinetd active, echo-stream disabled: PASS"
+  when:
+    - checkechostream.stdout == "yes"
+  tags:
+    - 2.1.4.2
+    - section2
+    - level1
+
+- name: 2.1.5.1 Check time-dgram service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/time-dgram| awk '{ print $3 }'"
+  register: checktimedgram
+  tags:
+    - 2.1.5.1
+    - section2
+    - level1
+
+- name: 2.1.5.1 Ensure time-dgram service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/time-dgram
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checktimedgram.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.5.1
+    - section2
+    - level1
+
+- name: 2.1.5.1 Mark PASS if time-dgram is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.5.1 "
+    line: "2.1.5.1 xinetd active, time-dgram disabled: PASS"
+  when:
+    - checktimedgram.stdout == "yes"
+  tags:
+    - 2.1.5.1
+    - section2
+    - level1
+
+- name: 2.1.5.2 Check time-stream service is disabled  
+  shell: "grep -m1 disable /etc/xinetd.d/time-stream| awk '{ print $3 }'"
+  register: checktimestream
+  tags:
+    - 2.1.5.2
+    - section2
+    - level1
+
+- name: 2.1.5.2 Ensure time-stream service is disabled
+  lineinfile: 
+    path: /etc/xinetd.d/time-stream
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - checktimestream.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.5.2
+    - section2
+    - level1
+
+- name: 2.1.5.2 Mark PASS if time-stream is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.5.2 "
+    line: "2.1.5.2 xinetd active, time-stream disabled: PASS"
+  when:
+    - checktimestream.stdout == "yes"
+  tags:
+    - 2.1.5.2
+    - section2
+    - level1
+
+
+- name: 2.1.6 Check if tftp-server is disbled
+  shell: "rpm -qa | grep -c ^tftp-server || true"
+  register: checktftpserver
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- debug:
+    var: checktftpserver
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- name: 2.1.6 Mark tftp-server disabled PASS if not installed
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.6 "
+    line: "2.1.6 Ensure tftp server is disabled, tftp-server not installed:  PASS"
+  when:
+    - checktftpserver.stdout == "0"
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- name: 2.1.6 Ensure tftp-server is disabled if installed
+  shell: "grep -m1 disable /etc/xinetd.d/tftp | awk '{ print $3 }'"
+  register: tftpserver
+  when:
+    - ansible_distribution_major_version <= "6"
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- debug:
+    var: tftpserver
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- name: 2.1.6 Disable tftp-server in xinetd
+  lineinfile:
+    path: /etc/xinetd.d/tftp
+    regexp: "disable"
+    line: "          disable = yes"
+  when:
+    - ansible_distribution_major_version <= "6"
+    - tftpserver.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- name: 2.1.6 Mark PASS if tftp-server disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.1.6 "
+    line: "2.1.6 xinetd active, tftp-server disabled: PASS"
+  when:
+    - checktftpserver.stdout == "yes"
+    - ansible_distribution_major_version <= "6"
+  tags:
+    - 2.1.6
+    - section2
+    - level1
+
+- name: 2.2.1.2 check NTP is installed
+  shell: "rpm -qa | grep -c ^ntp-4.2 || true"
+  register: ntpinstalled
+  tags:
+    - 2.2.1.2
+    - 2.2.1.1
+    - section2
+    - level1
+
+- name: 2.2.1.2 check is /etc/ntp.conf is configured with NTP servers
+  shell: "grep -c ^server /etc/ntp.conf || true"
+  register: ntpserver
+  when:
+    - ntpinstalled.stdout == "1"
+  tags:
+    - 2.2.1.2
+    - 2.2.1.1
+    - section2
+    - level1
+
+- name: 2.2.1.2 configure /etc/ntp.conf if not configured
+  blockinfile:
+    path: /etc/ntp.conf
+    block: |
+      server 0.centos.pool.ntp.org iburst
+      server 1.centos.pool.ntp.org iburst
+      server 2.centos.pool.ntp.org iburst
+      server 3.centos.pool.ntp.org iburst
+  when: 
+    - ntpinstalled.stdout == "1"
+    - ntpserver.stdout == "0"
+    - audit == "FALSE"
+  tags:
+    - 2.2.1.2
+    - section2
+    - level1
+
+- name: 2.2.1.2 check is /etc/ntp.conf is configured with NTP servers after remeidation
+  shell: "grep -c ^server /etc/ntp.conf || true"
+  register: ntpserverremedy
+  when:
+    - ntpinstalled.stdout == "1"
+  tags:
+    - 2.2.1.2
+    - section2
+    - level1
+
+- name: 2.2.1.2 set to PASS if ntp is installed and has a server line
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.1.2 "
+    line: "2.2.1.2 Check to see if NTP Daemon is installed and configured: PASS"
+  when: 
+    - ntpinstalled.stdout == "1"
+    - ntpserver.stdout >= "1"
+  tags:
+    - 2.2.1.2
+    - section2 
+    - level1
+
+- name: 2.2.1.3 check Chrony is installed
+  shell: "rpm -qa | grep -c ^chrony || true"
+  register: chronyinstalled
+  tags:
+    - 2.2.1.3
+    - 2.2.1.1
+    - section2
+    - level1
+
+- name: 2.2.1.3 check is /etc/chrony.conf is configured with NTP servers
+  shell: "grep -c ^server /etc/chrony.conf || true"
+  register: chronyserver
+  when:
+    - chronyinstalled.stdout == "1"
+  tags:
+    - 2.2.1.3
+    - 2.2.1.1
+    - section2
+    - level1
+
+- name: 2.2.1.3 configure /etc/chrony.conf if not configured
+  blockinfile:
+    path: /etc/chrony.conf
+    block: |
+      server 0.centos.pool.ntp.org iburst
+      server 1.centos.pool.ntp.org iburst
+      server 2.centos.pool.ntp.org iburst
+      server 3.centos.pool.ntp.org iburst
+  when: 
+    - chronyinstalled.stdout == "1"
+    - chronyserver.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.1.3
+    - section2
+    - level1
+
+- name: 2.2.1.3 check is /etc/chrony.conf is configured with NTP servers after remeidation
+  shell: "grep -c ^server /etc/chrony.conf || true"
+  register: chronyserverremedy
+  when:
+    - chronyinstalled.stdout == "1"
+  tags:
+    - 2.2.1.3
+    - section2
+    - level1
+
+- name: 2.2.1.3 set to PASS if chrony is installed and has a server line
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.1.3 "
+    line: "2.2.1.3 Check to see if chrony Daemon is installed and configured: PASS"
+  when: 
+    - chronyinstalled.stdout == "1"
+    - chronyserver.stdout >= "1"
+  tags:
+    - 2.2.1.3
+    - section2
+    - level1
+
+- name: 2.2.1.1 Ensure time synchronization is in use
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.1.1 "
+    line: "2.2.1.1 Ensure time synchronization is in use: PASS"
+  when:
+    - chronyinstalled.stdout == "1"
+    - chronyserver.stdout >= "1"
+  tags:
+    - 2.2.1.1
+    - section2
+    - level1
+
+- name: 2.2.1.1 Ensure time synchronization is in use
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.1.1 "
+    line: "2.2.1.1 Ensure time synchronization is in use: PASS"
+  when:
+    - ntpinstalled.stdout == "1"
+    - ntpserver.stdout >= "1"
+  tags:
+    - 2.2.1.1
+    - section2
+    - level1
+
+
+- name: 2.2.2 Ensure X Window system is not installed
+  shell: "rpm -qa | grep -c ^xorg-x11-server-Xorg || true"
+  register: checkxorg
+  tags:
+    - 2.2.2
+    - section2
+    - level1
+
+- name: 2.2.2 Uninstall X by uninstalling xorg-x11-server-Xorg RPM
+  yum: name=xorg-x11-server-Xorg state=absent
+  when: 
+    - audit == "FALSE"
+  tags:
+    - 2.2.2
+    - section2
+    - level1
+
+- name: 2.2.2 Report on wether or not X is installed
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.2 "
+    line: "2.2.2 Ensure X window system is not installed: PASS"
+  when:
+    - checkxorg.stdout == "0"
+  tags:
+    - 2.2.2
+    - section2
+    - level1
+
+
+- name: 2.2.3 Check to see if avahi-daemon is installed
+  shell: "rpm -qa avahi | grep -c avahi || true"
+  register: checkavahi
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 If avahi not installed, register as PASS  
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.3 "
+    line:  "2.2.3 Ensure avahi-daemon is disabled.  avahi-daemon is not installed: PASS"
+  when:
+    - checkavahi == "0"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 Disable avahi-daemon
+  shell: "chkconfig --level 123456 avahi-daemon off"
+  when:
+    - audit == "FALSE"
+    - checkavahi >= "1"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 Disable avahi-daemon Check to see if disabled RHEL6
+  shell: "chkconfig --list avahi-daemon | grep -c :on || true"
+  register: checkavahilevel
+  when:
+    - ansible_distribution_major_version <= "6"
+  tags:
+    - 2.2.3
+    - section2 
+    - level1
+  
+
+- name: 2.2.3 Disable avahi-daemon Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files avahi-daemon.service | grep -c enabled || true"
+  register: checkavahilevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 Debug checkavahi
+  debug: 
+    msg: "checkavahi = {{ checkavahi.stdout }}"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 Debug checkavahilevel
+  debug:
+    msg: "checkavahilevel = {{ checkavahilevel.stdout }}"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+- name: 2.2.3 Disable avahi-daemon 
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.3 "
+    line:  "2.2.3 Ensure avahi-daemon is disabled.  avahi-daemon is installed but not active: PASS"
+  when:
+    - checkavahi.stdout >= "1"
+    - checkavahilevel.stdout == "0"
+  tags:
+    - 2.2.3
+    - section2
+    - level1
+
+
+- name: 2.2.4 Check to see if cups is installed
+  shell: "rpm -qa cups | grep -c cups || true"
+  register: checkcups
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 If cups not installed, register as PASS  
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.4 "
+    line:  "2.2.4 Ensure cups is disabled.  cups daemon is not installed: PASS"
+  when:
+    - checkcups.stdout == "0"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Disable cups-daemon
+  shell: "chkconfig --level 123456 cups off"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7" 
+    - audit == "FALSE" and checkcups.stdout == "1"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Disable cups Check to see if disabled RHEL6
+  shell: "chkconfig --list cups | grep -c :on || true"
+  register: checkcupslevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Disable cups Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files cups.service | grep -c enabled || true"
+  register: checkcupslevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Debug checkcups
+  debug: 
+    msg: "checkcups = {{ checkcups.stdout }}"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Debug checkcupslevel
+  debug:
+    msg: "checkcupslevel = {{ checkcupslevel.stdout }}"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+- name: 2.2.4 Disable cups-daemon 
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.4 "
+    line:  "2.2.4 Ensure cups-daemon is disabled.  Cups is installed but not active: PASS"
+  when:
+    - checkcups.stdout >= "1"
+    - checkcupslevel.stdout == "0"
+  tags:
+    - 2.2.4
+    - section2
+    - level1
+
+
+- name: 2.2.5 Check to see if dhcp server is installed
+  shell: "rpm -qa dhcp | grep -c dhcp || true"
+  register: checkdhcp
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 If dhcp not installed, register as PASS  
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.5 "
+    line:  "2.2.5 Ensure dhcp is disabled.  DHCP daemon is not installed: PASS"
+  when:
+    - checkdhcp.stdout == "0"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 Disable dhcp-server
+  shell: "chkconfig --level 123456 dhcpd off"
+  when: 
+    - audit == "FALSE" and checkdhcp.stdout == "1"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 Disable dhcpd Check to see if disabled RHEL6
+  shell: "chkconfig --list dhcpd | grep -c :on || true"
+  register: checkdhcplevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 Disable dhcpd Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files dhcpd.service | grep -c enabled || true"
+  register: checkdhcplevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 Debug checkdhcp
+  debug:
+    msg: "checkdhcp = {{ checkdhcp.stdout }}"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+- name: 2.2.5 Disable dhcp-daemon 
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.5 "
+    line:  "2.2.5 Ensure dhcp-server is disabled.  DHCPd is installed but not active: PASS"
+  when:
+    - checkdhcp.stdout >= "1"
+    - checkdhcplevel.stdout == "0"
+  tags:
+    - 2.2.5
+    - section2
+    - level1
+
+
+- name: 2.2.6 Check to see if ldap server is installed
+  shell: "rpm -qa openldap-servers | grep -c openldap-servers || true"
+  register: checkldap
+  tags:
+    - 2.2.6
+    - section2
+    - level1
+
+- name: 2.2.6 If ldap not installed, register as PASS  
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.6 "
+    line:  "2.2.6 Ensure ldap is disabled.  OpenLDAP is not installed: PASS"
+  when:
+    - checkldap.stdout == "0"
+  tags:
+    - 2.2.6
+    - section2
+    - level1
+  
+- name: 2.2.6 Disable openldap
+  shell: "chkconfig --level 123456 slapd off"
+  when: audit == "FALSE" and checkldap.stdout == "1"
+  tags:
+    - 2.2.6
+    - section2
+    - level1
+
+- name: 2.2.6 Disable slapd Check to see if disabled RHEL6
+  shell: "chkconfig --list slapd | grep -c :on || true"
+  register: checkldaplevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.6
+    - 2.2.7
+    - section2
+    - level1
+
+- name: 2.2.6 Disable openldap Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files slapd.service | grep -c enabled || true"
+  register: checkldaplevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.6
+    - 2.2.7
+    - section2
+    - level1
+
+- name: 2.2.6 Debug checkldap
+  debug:
+    msg: "checkldap = {{ checkldap.stdout }}"
+  tags:
+    - 2.2.6
+    - section2
+    - level1
+
+- name: 2.2.6 Disable openldap servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.6 "
+    line:  "2.2.6 Ensure openldap-server is disabled.  Slapd is installed but not active: PASS"
+  when:
+    - checkldap.stdout >= "1"
+    - checkldaplevel.stdout == "0"
+  tags:
+    - 2.2.6
+    - section2
+    - level1
+
+
+# Note that NFS is built into the kernel so we don't check to see if it's installed
+- name: 2.2.7 Disable NFS 
+  shell: "chkconfig --level 123456 nfs off"
+  when: audit == "FALSE"
+  tags:
+    - 2.2.7
+    - section2
+    - level1
+
+- name: 2.2.7 Disable nfs Check to see if disabled RHEL6
+  shell: "chkconfig --list nfs | grep -c :on || true"
+  register: checknfslevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.7
+    - section2
+    - level1
+
+- name: 2.2.7 Disable nfs Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files nfs.service | grep -c enabled || true"
+  register: checknfslevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.7
+    - section2
+    - level1
+
+- name: 2.2.7 Disable nfs servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.7 "
+    line:  "2.2.7 Ensure nfs is disabled: PASS"
+  when:
+    - checkldaplevel.stdout == "0"
+  tags:
+    - 2.2.7
+    - section2
+    - level1
+
+
+- name: 2.2.8 Check to see if DNS server is installed
+  shell: "rpm -qa bind | grep -c bind || true"
+  register: checkbind
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+- name: 2.2.8 If bind not installed, register as PASS  
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.8 "
+    line:  "2.2.8 Ensure DNS is disabled. BIND is not installed: PASS"
+  when:
+    - checkbind.stdout == "0"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+- name: 2.2.8 Disable BIND
+  shell: "chkconfig --level 123456 named off"
+  when: audit == "FALSE" and checkbind.stdout == "1"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+- name: 2.2.8 Disable named Check to see if disabled RHEL6
+  shell: "chkconfig --list named | grep -c :on || true"
+  register: checkbindlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+  
+
+- name: 2.2.8 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files named.service | grep -c enabled || true"
+  register: checkbindlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+- name: 2.2.8 Debug checkbind
+  debug:
+    msg: "checkbind = {{ checkbind.stdout }}"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+- name: 2.2.8 Disable named servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.8 "
+    line:  "2.2.8 Ensure DNS is disabled. NAMED is installed but not active: PASS"
+  when:
+    - checkbind.stdout >= "1"
+    - checkbindlevel.stdout == "0"
+  tags:
+    - 2.2.8
+    - section2
+    - level1
+
+
+- name: 2.2.10 Check to see if HTTPD server is installed
+  shell: "rpm -qa httpd | grep -c httpd || true"
+  register: checkhttp
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 If httpd is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.10 "
+    line:  "2.2.10 Ensure HTTPD is disabled. HTTPD is not installed: PASS"
+  when:
+    - checkhttp.stdout == "0"
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 Disable HTTPD
+  shell: "chkconfig --level 123456 httpd off"
+  when: audit == "FALSE" and checkhttp.stdout == "1"
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 Disable httpd Check to see if disabled RHEL6
+  shell: "chkconfig --list httpd | grep -c :on || true"
+  register: checkhttplevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7" 
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files httpd.service | grep -c enabled || true"
+  register: checkhttplevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 Debug checkhttpd
+  debug:
+    msg: "checkhttp = {{ checkhttp.stdout }}"
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+- name: 2.2.10 Disable httpd servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.10 "
+    line:  "2.2.10 Ensure HTTP is disabled. HTTPD is installed but not active: PASS"
+  when:
+    - checkhttp.stdout >= "1"
+    - checkhttplevel.stdout == "0"
+  tags:
+    - 2.2.10
+    - section2
+    - level1
+
+
+- name: 2.2.9 Check to see if VSFTPD server is installed
+  shell: "rpm -qa vsftpd | grep -c vsftpd || true"
+  register: checkvsftp
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 If vsftpd is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.9 "
+    line:  "2.2.9 Ensure VSFTPD is disabled. VSFTPD is not installed: PASS"
+  when:
+    - checkvsftp.stdout == "0"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 Disable VSFTPD
+  shell: "chkconfig --level 123456 vsftpd off"
+  when: audit == "FALSE" and checkvsftp.stdout == "1"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 Disable vsftpd Check to see if disabled RHEL6
+  shell: "chkconfig --list vsftpd | grep -c :on || true"
+  register: checkvsftplevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files vsftpd.service | grep -c enabled || true"
+  register: checkvsftplevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 Debug checkvsftpd
+  debug:
+    msg: "checkvsftp = {{ checkvsftp.stdout }}"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+- name: 2.2.9 Disable vsftpd servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.9 "
+    line:  "2.2.9 Ensure VSFTP is disabled. VSFTPD is installed but not active: PASS"
+  when:
+    - checkvsftp.stdout >= "1"
+    - checkvsftplevel.stdout == "0"
+  tags:
+    - 2.2.9
+    - section2
+    - level1
+
+
+- name: 2.2.11 Check to see if dovecot server is installed
+  shell: "rpm -qa dovecot | grep -c dovecot || true"
+  register: checkdovecot
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 If dovecot is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.11 "
+    line:  "2.2.11 Ensure dovecot is disabled. dovecot is not installed: PASS"
+  when:
+    - checkdovecot.stdout == "0"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 Disable dovecot
+  shell: "chkconfig --level 123456 dovecot off"
+  when: audit == "FALSE" and checkdovecot.stdout == "1"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 Disable dovecot Check to see if disabled RHEL6
+  shell: "chkconfig --list dovecot | grep -c :on || true"
+  register: checkdovecotlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files dovecot.service | grep -c enabled || true"
+  register: checkdovecotlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 Debug checkdovecot
+  debug:
+    msg: "checkdovecot = {{ checkdovecot.stdout }}"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+- name: 2.2.11 Disable dovecot servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.11 "
+    line:  "2.2.11 Ensure dovecot is disabled. dovecot is installed but not active: PASS"
+  when:
+    - checkdovecot.stdout >= "1"
+    - checkdovecotlevel.stdout == "0"
+  tags:
+    - 2.2.11
+    - section2
+    - level1
+
+
+- name: 2.2.12 Check to see if smb server is installed
+  shell: "rpm -qa samba | grep -c samba || true"
+  register: checksmb
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.12 If smb is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.12 "
+    line:  "2.2.12 Ensure samba is disabled. samba is not installed: PASS"
+  when:
+    - checksmb.stdout == "0"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.12 Disable smb
+  shell: "chkconfig --level 123456 smb off"
+  when: audit == "FALSE" and checksmb.stdout == "1"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.12 Disable smb Check to see if disabled RHEL6
+  shell: "chkconfig --list smb | grep -c :on || true"
+  register: checksmblevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.13 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files smb.service | grep -c enabled || true"
+  register: checksmblevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.12 Debug checksmb
+  debug:
+    msg: "checksmb = {{ checksmb.stdout }}"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+- name: 2.2.12 Disable smb servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.12 "
+    line:  "2.2.12 Ensure samba is disabled. samba is installed but not active: PASS"
+  when:
+    - checksmb.stdout >= "1"
+  tags:
+    - 2.2.12
+    - section2
+    - level1
+
+
+- name: 2.2.13 Check to see if squid server is installed
+  shell: "rpm -qa squid | grep -c squid || true"
+  register: checksquid
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 If squid is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.13 "
+    line:  "2.2.13 Ensure squid is disabled. squid is not installed: PASS"
+  when:
+    - checksquid.stdout == "0"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 Disable squid
+  shell: "chkconfig --level 123456 squid off"
+  when: audit == "FALSE" and checksquid.stdout == "1"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 Disable squid Check to see if disabled RHEL6
+  shell: "chkconfig --list squid | grep -c :on || true"
+  register: checksquidlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files squid.service | grep -c enabled || true"
+  register: checksquidlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 Debug checksquid
+  debug:
+    msg: "checksquid = {{ checksquid.stdout }}"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+- name: 2.2.13 Disable squid servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.13 "
+    line:  "2.2.13 Ensure squid is disabled. squid is installed but not active: PASS"
+  when:
+    - checksquid.stdout >= "1"
+    - checksquidlevel.stdout == "0"
+  tags:
+    - 2.2.13
+    - section2
+    - level1
+
+
+- name: 2.2.15 Check to see if postfix is installed
+  shell: "rpm -qa postfix | grep -c postfix || true"
+  register: checkpostfix
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 If postfix is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.15 "
+    line:  "2.2.15 Postfix is disabled because it is not installed: PASS"
+  when:
+    - checkpostfix.stdout == "0"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Enable postfix if installed
+  shell: "chkconfig --level 2345 postfix on"
+  when: audit == "FALSE" and checkpostfix.stdout == "1"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate relayhost line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^relayhost"
+    line: "relayhost = relay.iconnection.com"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate mynetworks line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^mynetworks"
+    line: "mynetworks = 127.0.0.0/8"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate mydestination line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^mydestination"
+    line: "mydestination = $myhostname, localhost.$mydomain, $myorigin, localhost"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate inet_protocols line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^inet_protocols"
+    line: "inet_protocols = ipv4"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate inet_interfaces line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^inet_interfaces"
+    line: "inet_interfaces = localhost"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate myhostname line in /etc/postfix/main.cf
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^myhostname"
+    line: "myhostname = {{ ansible_hostname }}"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate mydomain line in /etc/postfix/main.cfg
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^mydomain"
+    line: "mydomain = {{ ansible_domain }}"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 Remediate myorigin line in /etc/postfix/main.cfg
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: "^myorigin"
+    line: "myorigin = $myhostname.$mydomain"
+  when:
+    - checkpostfix.stdout >= "1"
+    - audit == "FALSE"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 restart RHEL6 postfix
+  service:
+    name: "postfix"
+    state: "restarted"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version <= "7"
+    - audit == "FALSE"
+    - checkpostfix.stdout >= "1"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 restart RHEL7 postfix
+  systemd:
+    name: "postfix"
+    state: "reloaded"
+  when:
+    - ansible_distribution_major_version <= "7"
+    - audit == "FALSE"
+    - checkpostfix.stdout >= "1"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 check If inet_interfaces = localhost 
+  shell: "grep -c 'inet_interfaces = localhost' /etc/postfix/main.cf || true"
+  register: checkiface
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+- name: 2.2.15 if inet_interfaces = localhost then make as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.15 "
+    line: "2.2.15 Postfix MTA is configured for local use only:  PASS"
+  when: 
+    - checkiface.stdout >= "1"
+  tags:
+    - 2.2.15
+    - section2
+    - level1
+
+
+- name: 2.2.16 Check to see if ypbind server is installed
+  shell: "rpm -qa ypbind | grep -c ypbind || true"
+  register: checkypbind
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+- name: 2.2.16 If ypbind is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.16 "
+    line:  "2.2.16 Ensure ypbind is disabled. ypbind is not installed: PASS"
+  when:
+    - checkypbind.stdout == "0"
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+- name: 2.2.16 Disable ypbind
+  shell: "chkconfig --level 123456 ypbind off"
+  when: audit == "FALSE" and checkypbind.stdout == "1"
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+- name: 2.2.16 Disable ypbind Check to see if disabled RHEL6
+  shell: "chkconfig --list ypbind | grep -c :on || true"
+  register: checkypbindlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7" 
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+- name: 2.2.16 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files ypbind.service | grep -c enabled || true"
+  register: checkypbindlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+- name: 2.2.16 Debug checkypbind
+  debug: 
+    msg: "checkypbind = {{ checkypbind.stdout }}"
+  tags:
+    - 2.2.16
+    - section2  
+    - level1
+
+- name: 2.2.16 Disable ypbind servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.16"
+    line:  "2.2.16 Ensure ypbind is disabled. ypbind is installed but not active: PASS"
+  when:
+    - checkypbind.stdout >= "1"
+    - checkypbindlevel.stdout == "0"
+  tags:
+    - 2.2.16
+    - section2
+    - level1
+
+
+- name: 2.2.17 Check if rsh-server is disbled
+  shell: "rpm -qa | grep -c ^rsh-server || true"
+  register: checkrshserver
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Test dumb variable precedent
+  shell: echo "yes" 
+  register: rshserver
+  when:
+    - ansible_distribution_major_version <= "7"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Ensure rsh-server is disabled if installed
+  shell: "grep -m1 disable /etc/xinetd.d/rsh | awk '{ print $3 }'"
+  register: rshserver
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- debug: 
+    msg: "rshserver.stdout is {{ rshserver }}"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Disable rsh-server in xinetd
+  lineinfile:
+    dest: /etc/xinetd.d/rsh
+    regexp: "disable"
+    line: "disable = yes"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - rshserver.stdout == "yes"
+    - audit == "FALSE"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Mark PASS if rsh-server is disabled
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.17 "
+    line: "2.2.17 rsh installed, rsh-server disabled: PASS"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - checkrshserver.stdout == "yes"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Remediate RSH by removing it on RHEL/CentOS 7
+  yum:
+    name: rsh-server
+    state: absent
+  when:
+    - ansible_distribution_major_version <= "7"
+    - checkrshserver.stdout == "1"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+- name: 2.2.17 Mark rsh-server disabled PASS if not installed
+  lineinfile:
+    dest: "{{ ensono_file }}"
+    regexp: "^2.2.17 "
+    line: "2.2.17 Ensure rsh server is disabled, rsh-server not installed:  PASS"
+  when:
+    - checkrshserver.stdout == "0"
+  tags:
+    - 2.2.17
+    - section2
+    - level1
+
+
+- name: 2.2.18 Check to see if talk-server is installed
+  shell: "rpm -qa talk-server | grep -c talk-server || true"
+  register: checktalkserver
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 If talk-server is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.18 "
+    line:  "2.2.18 Ensure talk-server is disabled. talk-server is not installed: PASS"
+  when:
+    - checktalkserver.stdout == "0"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 Disable talk-server
+  shell: "chkconfig --level 123456 ntalk off"
+  when: audit == "FALSE" and checktalkserver.stdout == "1"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 Disable talk-server Check to see if disabled RHEL6
+  shell: "chkconfig --list  ntalk | grep -c on || true"
+  register: checktalkserverlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files talk-server.service | grep -c enabled || true"
+  register: checktalkserverlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 Debug checktalk-server
+  debug:
+    msg: "checktalkserver = {{ checktalkserver.stdout }}"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+- name: 2.2.18 Disable talk-server servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.18 "
+    line:  "2.2.18 Ensure talk-server is disabled. talk-server is installed but not active: PASS"
+  when:
+    - checktalkserver.stdout >= "1"
+    - checktalkserverlevel.stdout == "0"
+  tags:
+    - 2.2.18
+    - section2
+    - level1
+
+
+- name: 2.2.19 Check to see if telnet-server is installed
+  shell: "rpm -qa telnet-server | grep -c telnet-server || true"
+  register: checktelnetserver
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 If telnetserver is not installed, register as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.19 "
+    line:  "2.2.19 Ensure telnet-server is disabled. telnet-server is not installed: PASS"
+  when:
+    - checktelnetserver.stdout == "0"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 Disable telnet-server
+  shell: "chkconfig --level 123456 telnet off"
+  when: audit == "FALSE" and checktelnetserver.stdout == "1"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 Disable telnet-server Check to see if disabled RHEL6
+  shell: "chkconfig --list  telnet | grep -c on || true"
+  register: checktelnetserverlevel
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 Disable named Check to see if disabled RHEL7
+  shell: "systemctl list-unit-files telnet-server.socket | grep -c enabled || true"
+  register: checktelnetserverlevel
+  when:
+    - ansible_distribution_major_version == "7"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 Debug checktelnet-server
+  debug: 
+    msg: "checktelnetserver = {{ checktelnetserver.stdout }}"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+- name: 2.2.19 Disable telnet-server servers
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.2.19 "
+    line:  "2.2.19 Ensure telnet-server is disabled. telnet-server is installed but not active: PASS"
+  when:
+    - checktelnetserver.stdout >= "1"
+    - checktelnetserverlevel.stdout == "0"
+  tags:
+    - 2.2.19
+    - section2
+    - level1
+
+
+- name: 2.3.3 Ensure talk client is not installed by removing it
+  yum:
+    name: talk
+    state: absent
+  when:
+   - audit == "FALSE"
+  tags:
+    - 2.3.3
+    - section2
+    - level1
+
+- name: 2.3.3 Test if talk client is installed
+  shell: "rpm -qa talk | grep -m1 -c talk || true"
+  register: checktalk
+  tags:
+    - 2.3.3
+    - section2
+    - level1
+
+- name: 2.3.3 if talk not installed, mark as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.3.3 "
+    line: "2.3.3 talk client is not installed:  PASS"
+  when:
+    - checktalk.stdout == "0"
+  tags:
+    - 2.3.3
+    - section2
+    - level1
+
+
+- name: 2.3.1 Ensure yptools client is not installed by removing it
+  yum:
+    name: yp-tools
+    state: absent
+  when:
+   - audit == "FALSE"
+  tags:
+    - 2.3.1
+    - section2
+    - level1
+
+- name: 2.3.1 Test if yptools client is installed
+  shell: "rpm -qa yp-tools | grep -m1 -c yp-tools || true"
+  register: checkyptools
+  tags:
+    - 2.3.1
+    - section2
+    - level1
+
+- name: 2.3.1 if yp-tools not installed, mark as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.3.1 "
+    line: "2.3.1 yp-tools client is not installed:  PASS"
+  when:
+    - checkyptools.stdout == "0"
+  tags:
+    - 2.3.1
+    - section2
+    - level1
+
+
+- name: 2.3.2 Ensure rsh client is not installed by removing it
+  yum: name=rsh state=absent
+  when:
+   - audit == "FALSE"
+  tags:
+    - 2.3.2
+    - section2 
+    - level1
+
+- name: 2.3.2 Test if rsh client is installed
+  shell: "rpm -qa rsh | grep -m1 -c rsh || true"
+  register: checkrsh
+  tags:
+    - 2.3.2
+    - section2 
+    - level1
+
+- name: 2.3.2 if rsh not installed, mark as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.3.2 "
+    line: "2.3.2 rsh client is not installed:  PASS"
+  when:
+    - checkrsh.stdout == "0"
+  tags:
+    - 2.3.2
+    - section2
+    - level1
+
+
+- name: 2.3.4 Ensure telnet client is not installed by removing it
+  yum: name=telnet state=absent
+  when:
+    - audit == "FALSE"
+  tags:
+    - 2.3.4
+    - section2
+    - level1
+
+- name: 2.3.4 Test if telnet client is installed
+  shell: "rpm -qa telnet | grep -m1 -c telnet || true"
+  register: checktelnet
+  tags:
+    - 2.3.4
+    - section2
+    - level1
+
+- name: 2.3.4 if telnet not installed, mark as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.3.4 "
+    line: "2.3.4 telnet client is not installed:  PASS"
+  when:
+    - checktelnet.stdout == "0"
+  tags:
+    - 2.3.4
+    - section2
+    - level1
+
+
+- name: 2.3.5 Ensure openldap-clients client is not installed by removing it
+  yum:
+    name: openldap-clients
+    state: absent
+  when:
+   - audit == "FALSE"
+  tags:
+    - 2.3.5
+    - section2
+    - level1
+
+- name: 2.3.5 Test if openldap-clients client is installed
+  shell: "rpm -qa openldap-clients | grep -m1 -c openldap-clients || true"
+  register: checkopenldapclients
+  tags:
+    - 2.3.5
+    - section2
+    - level1
+
+- name: 2.3.5 if openldap-clients not installed, mark as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^2.3.5 "
+    line: "2.3.5 openldap-clients client is not installed:  PASS"
+  when:
+    - checkopenldapclients.stdout == "0"
+  tags:
+    - 2.3.5
+    - section2
+    - level1
+
+# Section 3
+- name: 3.1.1 Ensure IP forwarding is disabled by specifying it
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.ip_forward "
+    line: "net.ipv4.ip_forward = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.1.1
+    - section3
+    - level1
+
+- name: 3.1.1 Reload sysctl.conf settings
+  shell: "sysctl -p"
+  tags:
+    - 3.1.1
+    - section3
+    - level1
+
+- name: 3.1.1 test to see if ipv4 forwarding is enabled in kernel
+  shell: "sysctl net.ipv4.ip_forward | awk '{ print $3 }'"
+  register: checkipforward
+  tags:
+    - 3.1.1
+    - section3
+    - level1
+
+- name: 3.1.1 If IP forward is disabled, mark it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.1.1 "
+    line: "3.1.1 IPv4 forwarding disabled in kernel:  PASS"
+  when:
+    - checkipforward.stdout == "0"
+  tags:
+    - 3.1.1
+    - section3
+    - level1
+
+ 
+- name: 3.1.2 Ensure ICMP redirects are disabled by specifying it
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.send_redirects "
+    line: "net.ipv4.conf.all.send_redirects = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.1.2
+    - section3 
+    - level1
+
+- name: 3.1.2 Ensure ICMP redirects are disabled per interface
+  lineinfile: 
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.{{ item }}.send_redirects"
+    line: "net.ipv4.conf.{{ item }}.send_redirects = 0"
+  with_items: "{{ ansible_interfaces }}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.1.2
+    - section3
+    - level1
+
+- name: 3.1.2 Reload sysctl.conf settings
+  shell: "sysctl -p"
+  tags:
+    - 3.1.2
+    - section3
+    - level1
+
+- name: 3.1.2 check if net.ipv4.conf.all.send_redirects is set to zero
+  shell: "sysctl net.ipv4.conf.all.send_redirects | awk '{ print $3 }'"
+  register: checkicmpredir
+  tags:
+    - 3.1.2
+    - section3
+    - level1
+
+- name: 3.1.2 if redirects = 0 make as PASS in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.1.2 "
+    line: "3.1.2 ICMP redirects disabled: PASS"
+  when:
+    - checkicmpredir.stdout == "0"
+  tags:
+    - 3.1.2
+    - section3
+    - level1
+
+
+- name: 3.2.1 Ensure source routed packets are not accepted for 'all'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.accept_source_route"
+    line: "net.ipv4.conf.all.accept_source_route = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- name: 3.2.1 Ensure source routed packets are not accepted for 'default'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.default.accept_source_route"
+    line: "net.ipv4.conf.default.accept_source_route = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- name: 3.2.1 Reload /etc/sysctl.conf
+  shell: "sysctl -p"
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- name: 3.2.1 test number one to see if source routing is disabled
+  shell: "sysctl net.ipv4.conf.all.accept_source_route | awk '{ print $3 }'"
+  register: checksr1
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- name: 3.2.1 test number two to see if source routing is disabled
+  shell: "sysctl net.ipv4.conf.default.accept_source_route | awk '{ print $3 }'"
+  register: checksr2
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- debug:
+    msg: "checksr1 = {{ checksr1.stdout }} and checksr2 = {{ checksr2.stdout }}"
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+- name: 3.2.1 if source routing is disabled, not it in the log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.1 "
+    line: "3.2.1 IPv4 source routing disabled kernel:  PASS"
+  when:
+    - checksr1.stdout == "0"
+    - checksr2.stdout == "0"
+  tags:
+    - 3.2.1
+    - section3
+    - level1
+
+
+- name: 3.2.2 Disable acceptance of ICMP redirects
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.accept_redirects" 
+    line: "net.ipv4.conf.all.accept_redirects = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.2
+    - section3
+    - level1
+
+- name: 3.2.2 test to see if icmp accept redirects is disabled in kernel
+  shell: "sysctl net.ipv4.conf.all.accept_redirects | awk '{ print $3}'"
+  register: checkicmpredirects
+  tags:
+    - 3.2.2
+    - section3
+    - level1
+
+- name: 3.2.2 if icmp redirects accept, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.2 "
+    line: "3.2.2 IPv4 ICMP accept redirects disabled in kernel:  PASS"
+  when:
+    - checkicmpredirects.stdout == "0"
+  tags:
+    - 3.2.2
+    - section3
+    - level1
+
+
+- name: 3.2.3 Disable acceptance of ICMP secure redirects
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.secure_redirects"
+    line: "net.ipv4.conf.all.secure_redirects = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.3
+    - section3  
+    - level1
+
+- name: 3.2.3 test to see if icmp secure redirects is disabled in kernel
+  shell: "sysctl net.ipv4.conf.all.secure_redirects | awk '{ print $3}'"
+  register: checksecureredir
+  tags:
+    - 3.2.3
+    - section3
+    - level1
+
+- name: 3.2.3 if icmp redirects secure disabled, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.3 "
+    line: "3.2.3 IPv4 ICMP secure redirects are disabled in kernel:  PASS"
+  when:
+    - checksecureredir.stdout == "0"
+  tags:
+    - 3.2.3
+    - section3
+    - level1
+
+
+- name: 3.2.5 Configure such that ICMP broadcast requests are ignored
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.icmp_echo_ignore_broadcasts"
+    line: "net.ipv4.icmp_echo_ignore_broadcasts = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.5
+    - section3
+    - level1
+
+- name: 3.2.5 test to see if icmp broadcast ignore is enabled in kernel
+  shell: "sysctl net.ipv4.icmp_echo_ignore_broadcasts | awk '{ print $3}'"
+  register: checkicmpbroadcast
+  tags:
+    - 3.2.5
+    - section3
+    - level1
+
+- name: 3.2.5 if icmp broadcast ignore is set up in kernel and log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.5 "
+    line: "3.2.5 IPv4 ICMP broadcast configured to ignore in kernel:  PASS"
+  when:
+    - checkicmpbroadcast.stdout == "1"
+  tags:
+    - 3.2.5
+    - section3
+    - level1
+
+- name: 3.2.6 Ensure bogus ICMP responses are ignored
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.icmp_ignore_bogus_error_responses"
+    line: "net.ipv4.icmp_ignore_bogus_error_responses = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.6
+    - section3
+    - level1
+
+- name: 3.2.6 test to see if icmp_ignore_bogus_error_responses is disabled in kernel
+  shell: "sysctl net.ipv4.icmp_ignore_bogus_error_responses | awk '{ print $3}'"
+  register: checkicmpbogus
+  tags:
+    - 3.2.6
+    - section3
+    - level1
+
+- name: 3.2.6 if icmp_ignore_bogus_error_responses is configured, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.6 "
+    line: "3.2.6 IPv4 ICMP bogus error responses enabled in kernel:  PASS"
+  when:
+    - checkicmpbogus.stdout == "1"
+  tags:
+    - 3.2.6
+    - section3
+    - level1
+
+
+- name: 3.2.7 Ensure Reverse path Filtering is enabled for 'all'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.rp_filter"
+    line: "net.ipv4.conf.all.rp_filter = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+- name: 3.2.7 Ensure Reverse path Filtering is enabled for 'default'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.default.rp_filter"
+    line: "net.ipv4.conf.default.rp_filter = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+- name: 3.2.7 Ensure martian logging is enabled for 'all'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.all.log_martians"
+    line: "net.ipv4.conf.all.log_martians = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+- name: 3.2.7 Ensure martian logging is enabled for 'default'
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.default.log_martians"
+    line: "net.ipv4.conf.default.log_martians = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+- name: 3.2.7 Ensure reverse path filtering logging is enabled per interfaceinterface
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.conf.{{ item }}.log_martians"
+    line: "net.ipv4.conf.{{ item }}.send_redirects = 1"
+  with_items: "{{ ansible_interfaces }}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.7
+    - section3 
+    - level1
+
+- name: 3.2.7 test to see if reverse filtering 'default' is enabled in kernel
+  shell: "sysctl net.ipv4.conf.default.rp_filter | awk '{ print $3}'"
+  register: checkrp1
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+- name: 3.2.7 test to see if reverse filtering 'all' is enabled in kernel
+  shell: "sysctl net.ipv4.conf.all.rp_filter | awk '{ print $3}'"
+  register: checkrp2
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+
+- name: 3.2.7 if reverse filtering is configured, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.7 "
+    line: "3.2.7 IPv4 reverse path filtering enabled in kernel:  PASS"
+  when:
+    - checkrp1.stdout == "1"
+    - checkrp2.stdout == "1"
+  tags:
+    - 3.2.7
+    - section3
+    - level1
+
+
+- name: 3.2.8 enable net.ipv4.tcp_syncookies
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv4.tcp_syncookies"
+    line: "net.ipv4.tcp_syncookies= 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.2.8
+    - section3
+    - level1
+
+- name: 3.2.8 test to see if net.ipv4.tcp_cookies are enabled in kernel
+  shell: "sysctl net.ipv4.tcp_syncookies | awk '{ print $3}'"
+  register: checksyn
+  tags:
+    - 3.2.8
+    - section3
+    - level1
+
+- name: 3.2.8 if tcp_syncookies are configured, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.2.8 "
+    line: "3.2.8 IPv4 net.ipv4.tcp_syncookies are enabled kernel:  PASS"
+  when:
+    - checksyn.stdout == "1"
+  tags:
+    - 3.2.8
+    - section3
+    - level1
+
+
+- name: 3.3.1 IPV6 router advertisements not accepted for 'all' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.all.accept_ra"
+    line: "net.ipv6.conf.all.accept_ra = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.1
+    - section3
+    - level1
+
+- name: 3.3.1 IPv6 router advertisements not accepted for 'default' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.default.accept_ra"
+    line: "net.ipv6.conf.default.accept_ra = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.1
+    - section3
+    - level1
+
+- name: 3.3.1 Disable IPv6 router advertisements on all known interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.{{ item }}.accept_ra"
+    line: "net.ipv6.conf.{{ item }}.accept_ra = 0"
+  with_items: "{{ ansible_interfaces }}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.1
+    - section3
+    - level1
+
+
+- name: 3.3.1 test to see if ipv6 'default' RA is disabled in kernel
+  shell: "sysctl net.ipv6.conf.default.accept_ra | awk '{ print $3}'"
+  register: checkipv6ra1
+  tags:
+    - 3.3.1
+    - section3 
+    - level1
+
+- name: 3.3.1 test to see if ipv6 'all' RA is disabled in kernel
+  shell: "sysctl net.ipv6.conf.all.accept_ra | awk '{ print $3}'"
+  register: checkipv6ra2
+  tags:
+    - 3.3.1
+    - section3
+    - level1
+
+- name: 3.3.1 if router advertisement is disabled, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.3.1 "
+    line: "3.3.1 Ensure IPv6 router advertisement accepts are disabled in the kernel:  PASS"
+  when:
+    - checkipv6ra1.stdout == "0"
+    - checkipv6ra2.stdout == "0"
+  tags:
+    - 3.3.1
+    - section3
+    - level1
+
+
+- name: 3.3.2 IPV6 redirects are disabled for 'all' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.all.accept_redirects"
+    line: "net.ipv6.conf.all.accept_redirects = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.2
+    - section3
+    - level1
+
+- name: 3.3.2 IPv6 are disabled for 'default' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.default.accept_redirects"
+    line: "net.ipv6.conf.default.accept_redirects = 0"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.2
+    - section3 
+    - level1
+
+- name: 3.3.2 Disable IPv6 redirects on all known interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.{{ item }}.accept_redirects"
+    line: "net.ipv6.conf.{{ item }}.accept_redirects = 0"
+  with_items: "{{ ansible_interfaces }}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.2
+    - section3
+    - level1
+
+
+- name: 3.3.2 test to see if ipv6 'default' is disabled in kernel
+  shell: "sysctl net.ipv6.conf.default.accept_redirects | awk '{ print $3}'"
+  register: checkipv6redirects1
+  tags:
+    - 3.3.2
+    - section3
+    - level1
+
+- name: 3.3.2 test to see if ipv6 'all' is disabled in kernel
+  shell: "sysctl net.ipv6.conf.all.accept_redirects | awk '{ print $3}'"
+  register: checkipv6redirects2
+  tags:
+    - 3.3.2
+    - section3
+    - level1
+
+- name: 3.3.2 if reverse filtering is configured, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.3.2 "
+    line: "3.3.2 Ensure IPv6 redirects are disabled in the kernel:  PASS"
+  when:
+    - checkipv6redirects1.stdout == "0"
+    - checkipv6redirects2.stdout == "0"
+  tags:
+    - 3.3.2
+    - section3
+    - level1
+
+
+- name: 3.3.3 IPV6 is disabled for 'all' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.all.disable_ipv6"
+    line: "net.ipv6.conf.all.disable_ipv6 = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.3
+    - section3
+    - level1
+
+- name: 3.3.3 IPv6 is disabled for 'default' interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.default.disable_ipv6"
+    line: "net.ipv6.conf.default.disable_ipv6 = 1"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.3
+    - section3
+    - level1
+
+- name: 3.3.3 Disable IPv6 on all known interfaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: "^net.ipv6.conf.{{ item }}.disable_ipv6"
+    line: "net.ipv6.conf.{{ item }}.disable_ipv6 = 1"
+  with_items: "{{ ansible_interfaces }}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.3.3
+    - section3
+    - level1
+
+- name: 3.3.3 test to see if ipv6 'default' is disabled in kernel
+  shell: "sysctl net.ipv6.conf.default.disable_ipv6 | awk '{ print $3}'"
+  register: checkipv61
+  tags:
+    - 3.3.3
+    - section3 
+    - level1
+
+- name: 3.3.3 test to see if ipv6 'all' is disabled in kernel
+  shell: "sysctl net.ipv6.conf.all.disable_ipv6 | awk '{ print $3}'"
+  register: checkipv62
+  tags:
+    - 3.3.3
+    - section3 
+    - level1
+
+- name: 3.3.3 if reverse filtering is configured, note it in the log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.3.3 "
+    line: "3.3.3 Ensure IPv6 is disabled in the kernel:  PASS"
+  when:
+    - checkipv61.stdout == "1"
+    - checkipv62.stdout == "1"
+  tags:
+    - 3.3.3
+    - section3
+    - level1
+
+
+- name: 3.4.1 Ensure TCP Wrappers installed
+  yum: name=tcp_wrappers state=present
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.4.1
+    - section3
+    - level1
+
+- name: 3.4.1 test if tcp_wrappers are installed
+  shell: "rpm -qa tcp_wrappers | grep -m1 -c tcp_wrappers || true"
+  register: checktcpwrap
+  tags:
+    - 3.4.1
+    - section3
+    - level1
+
+- name: 3.4.1 If tcp_wrappers are installed, mark as true in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.4.1 "
+    line: "3.4.1 Ensure the tcp_wrappers package is installed:  PASS"
+  when:
+    - checktcpwrap.stdout == "1"
+  tags:
+    - 3.4.1
+    - section3
+    - level1
+
+
+- name: 3.4.4 Ensure permissions on /etc/hosts.allow are configured
+  file: state=touch owner=root mode=0644 group=root dest=/etc/hosts.allow
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.4.4
+    - section3
+    - level1
+
+- name: 3.4.4 get permissions on /etc/hosts.allow other write field
+  shell: "ls -al /etc/hosts.allow | cut -c9"
+  register: hostsallowow
+  tags:
+    - 3.4.4
+    - section3
+    - level1
+
+- name: 3.4.4 check permissions on /etc/hosts.allow other write field
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.4.4 Ensure /etc/hosts.allow is not world writeable: PASS"
+    regexp: "^3.4.4 "
+  when:
+    - hostsallowow.stdout != "w" or hostsallowow.stdout != "W"
+  tags:
+    - 3.4.4
+    - section3
+    - level1
+
+
+- name: 3.4.5 Ensure permissions on /etc/hosts.deny are configured
+  file:
+    state: touch
+    owner: root
+    mode: 0644
+    group: root
+    dest: /etc/hosts.deny
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.4.5
+    - section3
+    - level1
+
+- name: 3.4.5 get permissions on /etc/hosts.deny other write field
+  shell: "ls -al /etc/hosts.deny | cut -c9"
+  register: hostsdenyow
+  tags:
+    - 3.4.5
+    - section3
+    - level1
+
+- name: 3.4.5 check permissions on /etc/hosts.deny other write field
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.4.5 Ensure /etc/hosts.deny is not world writeable: PASS"
+    regexp: "^3.4.5 "
+  when:
+    - hostsdenyow.stdout != "w" or hostsdenyow.stdout != "W"
+  tags:
+    - 3.4.5
+    - section3
+    - level1
+
+
+- name: 3.5.1 Ensure DCCP config file is present
+  file:
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+    path: /etc/modprobe.d/dccp.conf
+  tags:
+    - 3.5.1
+    - section3
+    - level1
+  
+- name: 3.5.1 Ensure DCCP is disabled
+  lineinfile: 
+    path: /etc/modprobe.d/dccp.conf
+    line: "install dccp /bin/true"
+    regexp: "^install"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.5.1
+    - section3
+    - level1
+
+- name: 3.5.1 Check that DCCP is disabled
+  shell: "grep -c '^install dccp /bin/true' /etc/modprobe.d/dccp.conf || true"
+  register: checkdccp
+  tags:
+    - 3.5.1
+    - section3
+    - level1
+
+- name: 3.5.1 If DCCP is disabled, then note in log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.5.1 Ensure DCCP is disabled: PASS"
+    regexp: "^3.5.1 "
+  when:
+    - checkdccp.stdout == "1"
+  tags:
+    - 3.5.1
+    - section3
+    - level1
+ 
+
+
+- name: 3.5.2 Ensure SCTP config file is present
+  file:
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+    path: /etc/modprobe.d/sctp.conf
+  tags:
+    - 3.5.2
+    - section3
+    - level1
+  
+- name: 3.5.2 Ensure SCTP is disabled
+  lineinfile: 
+    path: /etc/modprobe.d/sctp.conf
+    line: "install sctp /bin/true"
+    regexp: "^install"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.5.2
+    - section3
+    - level1
+
+- name: 3.5.2 check to see if  SCTP network protocol disabled
+  shell: "grep -c '^install sctp /bin/true' /etc/modprobe.d/sctp.conf || true"
+  register: checksctp
+  tags:
+    - 3.5.2
+    - section3
+    - level1
+
+- name: 3.5.2 If SCTP is disabled, then note in log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.5.2 Ensure SCTP is disabled: PASS"
+    regexp: "^3.5.2 "
+  when:
+    - checksctp.stdout == "1"
+  tags:
+    - 3.5.2
+    - section3
+    - level1
+
+
+- name: 3.5.3 Ensure RDS config file is present
+  file:
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+    path: /etc/modprobe.d/rds.conf
+  tags:
+    - 3.5.3
+    - section3
+    - level1
+
+- name: 3.5.3 Ensure RDS is disabled
+  lineinfile:
+    path: /etc/modprobe.d/rds.conf
+    line: "install rds /bin/true"
+    regexp: "^install"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.5.3
+    - section3
+    - level1
+
+- name: 3.5.3 check to see if RDS network protocol disabled
+  shell: "grep -c '^install rds /bin/true' /etc/modprobe.d/rds.conf || true"
+  register: checkrds
+  tags:
+    - 3.5.3
+    - section3
+    - level1
+
+- name: 3.5.3 If RDS is disabled, then note in log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.5.3 Ensure RDS is disabled: PASS"
+    regexp: "^3.5.3 "
+  when:
+    - checkrds.stdout == "1"
+  tags:
+    - 3.5.3
+    - section3
+    - level1
+
+
+- name: 3.5.4 Ensure tipc config file is present
+  file:
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+    path: /etc/modprobe.d/tipc.conf
+  tags:
+    - 3.5.4
+    - section3
+    - level1
+
+- name: 3.5.4 Ensure tipc is disabled
+  lineinfile:
+    path: /etc/modprobe.d/tipc.conf
+    line: "install tipc /bin/true"
+    regexp: "^install"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 3.5.4
+    - section3
+    - level1
+
+- name: 3.5.4 check to see if  tipc network protocol disabled
+  shell: "grep -c '^install tipc /bin/true' /etc/modprobe.d/tipc.conf || true"
+  register: checktipc
+  tags:
+    - 3.5.4
+    - section3
+    - level1
+
+- name: 3.5.4 If tipc is disabled, then note in log as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    line: "3.5.4 Ensure tipc is disabled: PASS"
+    regexp: "^3.5.4 "
+  when:
+    - checktipc.stdout == "1"
+  tags:
+    - 3.5.4
+    - section3
+    - level1
+
+
+- name: 3.6.1 Ensure iptables is installed
+  yum: 
+    name: iptables
+    state: present
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE"
+  tags:
+    - 3.6.1
+    - section3
+    - level1
+
+- name: 3.6.1 test if iptables is installed
+  shell: "rpm -qa iptables | grep -m1 -c iptables || true"
+  register: checkiptables
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+  tags:
+    - 3.6.1
+    - section3
+    - level1
+
+- name: 3.6.1 If iptables are installed, mark as true in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^3.6.1 "
+    line: "3.6.1 Ensure the iptables package is installed:  PASS"
+  when:
+    - checkiptables.stdout == "1"
+  tags:
+    - 3.6.1
+    - section3
+    - level1
+
+# SEctions 4
+- name: 4.2.1.1 Ensure syslog-ng is not installed
+  yum:
+    state: absent
+    name: syslog-ng
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE"
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 Ensure rsyslog is configures for 5
+  yum: 
+    state: present
+    name: rsyslog
+  when:  
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE" 
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 Ensure rsyslog7 is configured for 6
+  yum: 
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - rsyslog7
+    - rsyslog7-gnutls
+    - rsyslog7-gssapi
+    - rsyslog7-snmp
+  when:  
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE" 
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 Ensure rsyslogd is configured for 7
+  yum:
+     state: present
+     name: "{{ item }}"
+  with_items:
+    - rsyslog
+    - rsyslog-gnutls
+    - rsyslog-gssapi
+    - rsyslog-snmp
+    - rsyslog-crypto
+  when:  
+    - ansible_distribution_major_version == "7"
+    - audit == "FALSE" 
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+
+- name: 4.2.3 Test if rsyslog is installed
+  shell: "rpm -qa rsyslog | grep -m1 -c rsyslog || true"
+  register: checkrsyslog
+  tags:
+    - 4.2.3
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.3 If rsyslog is installed, mark as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^4.2.3 "
+    line: "4.2.3 Ensure the rsyslog packages is installed:  PASS"
+  when:
+    - checkrsyslog.stdout >= "1"
+  tags:
+    - 4.2.3
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 Ensure rsyslog is enabled
+  shell: "chkconfig --level 234 rsyslog on"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE"
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 Check if rsyslog is enabled
+  shell: "chkconfig --list rsyslog | grep -c :on || true"
+  register: rsyslogenabled
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - checkrsyslog.stdout == "1"
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 check if rsyslog is enabled 7
+  shell: "systemctl list-unit-files rsyslog.service | grep -c enabled || true"
+  register: rsyslogenabled
+  when:  
+    - ansible_distribution_major_version == "7"
+    - checkrsyslog.stdout == "1"
+  tags:
+    - 4.2.1.1
+    - section4
+    - level1
+
+- name: 4.2.1.1 If rsyslog is installed, mark as true in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^4.2.1.1 "
+    line: "4.2.1.1 Ensure the rsyslog package is enabled:  PASS"
+  when:
+    - checkrsyslog.stdout == "1"
+    - rsyslogenabled.stdout == "1"
+  tags:
+    - 4.2.1.1
+    - section4  
+    - level1
+
+
+- name: 4.2.1.3 Set file creation mode for rsyslog files is restrictive
+  lineinfile:
+    path: /etc/rsyslog.conf
+    regexp: '^\$FileCreateMode'
+    line: "$FileCreateMode 0640"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 4.2.1.3
+    - section4
+    - level1
+
+- name: 4.2.1.3 Check file creation mode in /etc/rsyslog.conf
+  shell: "grep -c '^$FileCreateMode 0640' /etc/rsyslog.conf  || true"
+  register: rsyslogcreate
+  tags:
+    - 4.2.1.3
+    - section4
+    - level1
+
+- debug:
+    msg: "rsyslogcreate = {{ rsyslogcreate }}"
+  tags:
+    - 4.2.1.3
+    - section4
+    - level1
+
+- name: 4.2.1.3 Register PASS in log if file create mode is correct
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^4.2.1.3 "
+    line: "4.2.1.3 Ensure the rsyslog FileCreateMode is restritive:  PASS"
+  when:
+    - rsyslogcreate.stdout >= "1"
+  tags:
+    - 4.2.1.3
+    - section4
+    - level1
+
+
+- name: 5.1.1 Test if cronie is installed
+  shell: "rpm -qa cronie | grep -m1 -c cronie || true"
+  register: checkcronie
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+- name: 5.1.1 install cronie if not installed
+  yum:
+    state: present
+    name: cronie 
+  when:
+    - audit == "FALSE"
+    - checkrsyslog.stdout == "0"
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+- name: 5.1.1 Ensure cronie is enabled
+  shell: "chkconfig --level 2345 crond on"
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - audit == "FALSE"
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+- name: 5.1.1 Check if cronie is enabled
+  shell: "chkconfig --list crond | grep -c :on || true"
+  register: cronieenabled
+  when:
+    - ansible_distribution_major_version <= "6" or ansible_distribution_major_version == "7"
+    - checkcronie.stdout == "1"
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+- name: 5.1.1 check if rsyslog is enabled 7
+  shell: "systemctl list-unit-files crond.service | grep -c enabled || true"
+  register: cronieenabled
+  when:
+    - ansible_distribution_major_version == "7"
+    - checkcronie.stdout == "1"
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+- name: 5.1.1 If cronie is installed, mark as true in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.1 "
+    line: "5.1.1 Ensure the cronie package is enabled:  PASS"
+  when:
+    - checkcronie.stdout == "1"
+    - cronieenabled.stdout == "1"
+  tags:
+    - 5.1.1
+    - section5
+    - level1
+
+
+- name: 5.1.2 Ensure permissions /etc/crontab are configured
+  file:
+    path: /etc/crontab
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.2
+    - section5
+    - level1
+
+- name: 5.1.2 Check for other/read permissions on /etc/crontab
+  shell: "ls -al /etc/crontab | cut -c8"
+  register: crontabor
+  tags:
+    - 5.1.2
+    - section5
+    - level1
+
+- name: 5.1.2 Check for other/write permissions on /etc/crontab
+  shell: "ls -al /etc/crontab | cut -c9"
+  register: crontabow
+  tags:
+    - 5.1.2
+    - section5
+    - level1
+
+- name: 5.1.2 Tag check as PASS if /etc/crontab has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.2 "
+    line: "5.1.2 Check if /etc/crontab is not world readable or writeable:  PASS"
+  when:
+    - ansible_distribution_major_version == "7"
+    - crontabor != "r" or crontabor != "R" 
+    - crontabow != "w" or crontabow != "W"
+  tags:
+    - 5.1.2
+    - section5
+    - level1
+
+
+- name: 5.1.3 Ensure permissions /etc/cron.hourly are configured
+  file:
+    path: /etc/cron.hourly
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.3
+    - section5 
+    - level1
+
+- name: 5.1.3 Check for other/read permissions on /etc/cron.hourly
+  shell: "ls -al /etc/cron.hourly | cut -c8"
+  register: cronhourlyor
+  tags:
+    - 5.1.3
+    - section5
+    - level1
+
+- name: 5.1.3 Check for other/write permissions on /etc/cron.hourly
+  shell: "ls -al /etc/cron.hourly | cut -c9"
+  register: cronhourlyow
+  tags:
+    - 5.1.3
+    - section5
+    - level1
+
+- name: 5.1.3 Check for other/execute permissions on /etc/cron.hourly
+  shell: "ls -al /etc/cron.hourly | cut -c10"
+  register: cronhourlyox
+  tags:
+    - 5.1.3
+    - section5
+    - level1
+
+- name: 5.1.3 Tag check as PASS if /etc/cron.hourly has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.3 "
+    line: "5.1.3 Check if /etc/cron.hourly if other group is not world readable or writeable executable:  PASS"
+  when:
+    - cronhourlyor != "r" or cronhourlyor != "R" 
+    - cronhourlyow != "w" or cronhourlyow != "W" 
+    - cronhourlyox != "x" or cronhourlyox != "X"
+  tags:
+    - 5.1.3
+    - section5
+    - level1
+
+
+- name: 5.1.4 Ensure permissions /etc/cron.daily are configured
+  file:
+    path: /etc/cron.daily
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.4
+    - section5
+    - level1
+
+- name: 5.1.4 Check for other/read permissions on /etc/cron.daily
+  shell: "ls -al /etc/cron.daily | cut -c8"
+  register: crondailyor
+  tags:
+    - 5.1.4
+    - section5
+    - level1
+
+- name: 5.1.4 Check for other/write permissions on /etc/cron.daily
+  shell: "ls -al /etc/cron.daily | cut -c9"
+  register: crondailyow
+  tags:
+    - 5.1.4
+    - section5
+    - level1
+
+- name: 5.1.4 Check for other/execute permissions on /etc/cron.daily
+  shell: "ls -al /etc/cron.daily | cut -c10"
+  register: crondailyox
+  tags:
+    - 5.1.4
+    - section5
+    - level1
+
+- name: 5.1.4 Tag check as PASS if /etc/cron.daily has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.4 "
+    line: "5.1.4 Check if /etc/cron.daily is not world readable or writeable or executable:  PASS"
+  when:
+    - crondailyor != "r" or crondailyor != "R" 
+    - crondailyow != "w" or crondailyow != "W" 
+    - crondailyox != "x" or crondailyox != "X"
+  tags:
+    - 5.1.4
+    - section5
+    - level1
+
+
+- name: 5.1.5 Ensure permissions /etc/cron.weekly are configured
+  file:
+    path: /etc/cron.weekly
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.5
+    - section5
+    - level1
+
+- name: 5.1.5 Check for other/read permissions on /etc/cron.weekly
+  shell: "ls -al /etc/cron.weekly | cut -c8"
+  register: cronweeklyor
+  tags:
+    - 5.1.5
+    - section5
+    - level1
+
+- name: 5.1.5 Check for other/write permissions on /etc/cron.weekly
+  shell: "ls -al /etc/cron.weekly | cut -c9"
+  register: cronweeklyow
+  tags:
+    - 5.1.5
+    - section5
+    - level1
+
+- name: 5.1.5 Check for other/execute permissions on /etc/cron.weekly
+  shell: "ls -al /etc/cron.weekly | cut -c10"
+  register: cronweeklyox
+  tags:
+    - 5.1.5
+    - section5
+    - level1
+
+- name: 5.1.5 Tag check as PASS if /etc/cron.weekly has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.5 "
+    line: "5.1.5 Check if /etc/cron.weekly is not world readable or writeable or executable:  PASS"
+  when:
+    - cronweeklyor != "r" or cronweeklyor != "R" 
+    - cronweeklyow != "w" or cronweeklyow != "W" 
+    - cronweeklyox != "x" or cronweeklyox != "X"
+  tags:
+    - 5.1.5
+    - section5
+    - level1
+
+
+- name: 5.1.6 Ensure permissions /etc/cron.monthly are configured
+  file:
+    path: /etc/cron.monthly
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.6
+    - section5 
+    - level1
+
+- name: 5.1.6 Check for other/read permissions on /etc/cron.monthly
+  shell: "ls -al /etc/cron.monthly | cut -c8"
+  register: cronmonthlyor
+  tags:
+    - 5.1.6
+    - section5
+    - level1
+
+- name: 5.1.6 Check for other/write permissions on /etc/cron.monthly
+  shell: "ls -al /etc/cron.monthly | cut -c9"
+  register: cronmonthlyow
+  tags:
+    - 5.1.6
+    - section5
+    - level1
+
+- name: 5.1.6 Check for other/execute permissions on /etc/cron.monthly
+  shell: "ls -al /etc/cron.monthly | cut -c10"
+  register: cronmonthlyox
+  tags:
+    - 5.1.6
+    - section5
+    - level1
+
+- name: 5.1.6 Tag check as PASS if /etc/cron.monthly has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.6 "
+    line: "5.1.6 Check if /etc/cron.monthly is not world readable or writeable or executable:  PASS"
+  when:
+    - cronmonthlyor != "r" or cronmonthlyor != "R" 
+    - cronmonthlyow != "w" or cronmonthlyow != "W" 
+    - cronmonthlyox != "x" or cronmonthlyox != "X"
+  tags:
+    - 5.1.6
+    - section5
+    - level1
+
+
+- name: 5.1.7 Ensure permissions /etc/cron.d are configured
+  file:
+    path: /etc/cron.d
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.1.7
+    - section5
+    - level1
+
+- name: 5.1.7 Check for other/read permissions on /etc/cron.d
+  shell: "ls -al /etc/cron.d | cut -c8"
+  register: crondor
+  tags:
+    - 5.1.7
+    - section5
+    - level1
+
+- name: 5.1.7 Check for other/write permissions on /etc/cron.d
+  shell: "ls -al /etc/cron.d | cut -c9"
+  register: crondow
+  tags:
+    - 5.1.7
+    - section5
+    - level1
+
+- name: 5.1.7 Check for other/execute permissions on /etc/cron.d
+  shell: "ls -al /etc/cron.d | cut -c10"
+  register: crondox
+  tags:
+    - 5.1.7
+    - section5
+    - level1
+
+- name: 5.1.7 Tag check as PASS if /etc/cron.d has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.1.7 "
+    line: "5.1.7 Check if /etc/cron.d is not world readable or writeable or executable:  PASS"
+  when:
+    - crondor != "r" or crondor != "R" 
+    - crondow != "w" or crondow != "W" 
+    - crondox != "x" or crondox != "X"
+  tags:
+    - 5.1.7
+    - section5
+    - level1
+
+
+- name: 5.2.1 Ensure permissions /etc/ssh/sshd_config are configured
+  file:
+    path: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    state: touch
+    mode: "o-rwx"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.1
+    - section5
+    - level1
+
+- name: 5.2.1 Check for other/read permissions on /etc/ssh/sshd_config
+  shell: "ls -al /etc/ssh/sshd_config | cut -c8"
+  register: sshdconfigor
+  tags:
+    - 5.2.1
+    - section5
+    - level1
+
+- name: 5.2.1 Check for other/write permissions on /etc/ssh/sshd_config
+  shell: "ls -al /etc/ssh/sshd_config | cut -c9"
+  register: sshdconfigow
+  tags:
+    - 5.2.1
+    - section5
+    - level1
+
+- name: 5.2.1 Check for other/execute permissions on /etc/ssh/sshd_config
+  shell: "ls -al /etc/ssh/sshd_config | cut -c10"
+  register: sshdconfigox
+  tags:
+    - 5.2.1
+    - section5
+    - level1
+
+- name: 5.2.1 Tag check as PASS if /etc/ssh/sshd_config has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.1 "
+    line: "5.2.1 Check if /etc/ssh/sshd_config is not world readable or writeable or executable:  PASS"
+  when:
+    - sshdconfigor != "r" or sshdconfigor != "R" 
+    - sshdconfigow != "w" or sshdconfigow != "W" 
+    - sshdconfigox != "x" or sshdconfigox != "X"
+  tags:
+    - 5.2.1
+    - section5
+    - level1
+
+
+- name: 5.2.2 Ensure SSH Protocol is set to 2
+  lineinfile: 
+    path: /etc/ssh/sshd_config
+    regexp: "^Protocol "
+    line: "Protocol 2"
+    insertafter: "#Protocol "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.2
+    - section5
+    - level1
+
+- name: 5.2.2 Test to see if SSH Protocol is explicitly set to 2
+  shell: "grep -c '^Protocol 2' /etc/ssh/sshd_config || true"
+  register: sshp2
+  tags:
+    - 5.2.2
+    - section5
+    - level1
+
+- name: 5.2.2 If true, record in log
+  lineinfile: 
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.2 "
+    line: "5.2.2 SSHv2 is explicitly set in /etc/ssh/sshd_config: PASS"
+  when: 
+    - sshp2.stdout >= "1"
+  tags:
+    - 5.2.2
+    - section5
+    - level1
+
+
+- name: 5.2.3 Ensure SSH log level is set to INFO
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^LogLevel "
+    line: "LogLevel INFO"
+    insertafter: "#LogLevel "
+    state: present
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.3
+    - section5
+    - level1
+
+- name: 5.2.3 Test to see if SSH LogLevel is explicitly set to INFO
+  shell: "grep -c '^LogLevel Info' /etc/ssh/sshd_config || true"
+  register: sshloglevel
+  tags:
+    - 5.2.3
+    - section5
+    - level1
+
+- name: 5.2.3 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.3 "
+    line: "5.2.3 SSH is explicitly set LogLevel to INFO: PASS"
+  when:
+    - sshloglevel.stdout >= "1"
+  tags:
+    - 5.2.3
+    - section5
+    - level1
+
+
+- name: 5.2.4 Ensure SSH X11Forwarding is disabled
+  lineinfile: 
+    path: /etc/ssh/sshd_config
+    regexp: "^X11Forwarding "
+    line: "X11Forwarding no"
+    insertafter: "#X11Forwarding "
+    state: present
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.4
+    - section5
+    - level1
+
+- name: 5.2.4 Test to see if SSH X11Forwarding is explicitly set to "no"
+  shell: "grep -c '^X11Forwarding no' /etc/ssh/sshd_config || true"
+  register: sshxforward
+  tags:
+    - 5.2.4
+    - section5
+    - level1
+
+- name: 5.2.4 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.4 "
+    line: "5.2.4 SSH is explicitly set disable X11Forwarding: PASS"
+  when:
+    - sshxforward.stdout >= "1"
+  tags:
+    - 5.2.4
+    - section5
+    - level1
+
+
+- name: 5.2.5 Ensure SSH MaxAuthTries is set to 4 or less
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^MaxAuthTries "
+    line: "MaxAuthTries 4"
+    insertafter: "#MaxAuthTries "
+    state: present
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.5
+    - section5
+    - level1
+
+- name: 5.2.5 Test to see if SSH MaxAuthTries is explicitly set to 4
+  shell: "grep -c '^MaxAuthTries 4' /etc/ssh/sshd_config || true"
+  register: sshmaxauth
+  tags:
+    - 5.2.5
+    - section5
+    - level1
+
+- name: 5.2.5 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.5 "
+    line: "5.2.5 SSH is explicitly set MaxAuthTries to 4: PASS"
+  when:
+    - sshmaxauth.stdout >= "1"
+  tags:
+    - 5.2.5
+    - section5
+    - level1
+  
+
+- name: 5.2.6 Ensure SSH IgnoreRhosts is set to "yes"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^IgnoreRhosts "
+    line: "IgnoreRhosts yes"
+    insertafter: "#IgnoreRhosts "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.6
+    - section5
+    - level1
+
+- name: 5.2.6 Test to see if SSH IgnoreRhosts is set to yes
+  shell: "grep -c '^IgnoreRhosts yes' /etc/ssh/sshd_config || true"
+  register: sshrhosts
+  tags:
+    - 5.2.6
+    - section5
+    - level1
+
+- name: 5.2.6 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.6 "
+    line: "5.2.6 SSH is explicitly set IgnoreRhosts to yes : PASS"
+  when:
+    - sshrhosts.stdout >= "1"
+  tags:
+    - 5.2.6
+    - section5 
+    - level1
+
+
+- name: 5.2.7 Ensure SSH HostbasedAuthentication is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^HostbasedAuthentication "
+    line: "HostbasedAuthentication no"
+    insertafter: "#HostbasedAuthentication"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.7
+    - section5
+    - level1
+
+- name: 5.2.7 Test to see if SSH HostbasedAuthentication no
+  shell: "grep -c '^HostbasedAuthentication no' /etc/ssh/sshd_config || true"
+  register: sshhba
+  tags:
+    - 5.2.7
+    - section5
+    - level1
+
+- name: 5.2.7 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.7 "
+    line: "5.2.7 SSH is explicitly set disable HostbasedAuthentication: PASS"
+  when:
+    - sshhba.stdout >= "1"
+  tags:
+    - 5.2.7
+    - section5
+    - level1
+
+- name: 5.2.9 Ensure SSH PermitEmptyPasswords is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitEmptyPasswords "
+    line: "PermitEmptyPasswords no"
+    insertafter: "#PermitEmptyPasswords"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.9
+    - section5
+    - level1
+
+- name: 5.2.9 Test to see if SSH PermitEmptyPasswords no
+  shell: "grep -c '^PermitEmptyPasswords no' /etc/ssh/sshd_config || true"
+  register: sshpep
+  tags:
+    - 5.2.9
+    - section5
+    - level1
+
+- name: 5.2.9 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.9 "
+    line: "5.2.9 SSH is explicitly set disable PermitEmptyPasswords: PASS"
+  when:
+    - sshpep.stdout >= "1"
+  tags:
+    - 5.2.9
+    - section5
+    - level1
+
+
+- name: 5.2.10 Ensure SSH PermitUserEnvironment is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitUserEnvironment "
+    line: "PermitUserEnvironment no"
+    insertafter: "#PermitUserEnvironment"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.10
+    - section5
+    - level1
+
+- name: 5.2.10 Test to see if SSH PermitUserEnvironment no
+  shell: "grep -c '^PermitUserEnvironment no' /etc/ssh/sshd_config || true"
+  register: sshpue
+  tags:
+    - 5.2.10
+    - section5
+    - level1
+
+- name: 5.2.10 If true, record in log
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.10 "
+    line: "5.2.10 SSH is explicitly set disable PermitUserEnvironment: PASS"
+  when:
+    - sshpue.stdout >= "1"
+  tags:
+    - 5.2.10
+    - section5
+    - level1
+
+- name: 5.2.11 Ensure SSH  only secure ciphers are used
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^Ciphers "
+    line: "Ciphers aes128-ctr,aes192-ctr,aes256-ctr"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.11
+    - section5
+    - level1
+
+- name: 5.2.11 Test to see if SSH secure ciphers are used
+  shell: "grep -c '^Ciphers aes128-ctr,aes192-ctr,aes256-ctr' /etc/ssh/sshd_config || true"
+  register: sshciphers
+  tags:
+    - 5.2.11
+    - section5
+    - level1
+
+- name: 5.2.11 If ciphers are secure, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.11 "
+    line: "5.2.11 SSH ciphers are defined and secure: PASS"
+  when:
+    - sshciphers.stdout >= "1"
+  tags:
+    - 5.2.11
+    - section5
+    - level1
+
+
+- name: 5.2.12 Ensure SSH  only secure MACs are used
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^MACs "
+    line: "MACs umac-64@openssh.com,hmac-ripemd160,hmac-sha2-256,hmac-sha2-512"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.12
+    - section5
+    - level1
+
+- name: 5.2.12 Test to see if SSH secure MACs are used
+  shell: "grep -c '^MACs umac-64@openssh.com,hma-ripemd160,hmac-sha2-256,hmac-sha2-512' /etc/ssh/sshd_config || true"
+  register: sshmacs
+  tags:
+    - 5.2.12
+    - section5
+    - level1
+
+- name: 5.2.12 If SSH MACs are secure, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.12 "
+    line: "5.2.11 SSH MACs are defined and secure: PASS"
+  when:
+    - sshmacs.stdout >= "1"
+  tags:
+    - 5.2.12
+    - section5
+    - level1
+
+- name: 5.2.14 Ensure SSH LoginGraceTime is set to one minute or less
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^LoginGraceTime "
+    line: "LoginGraceTime 1m"
+    insertafter: "#LoginGraceTime"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.14
+    - section5
+    - level1
+
+- name: 5.2.14 Test to see if SSH LoginGraceTime is 1 minute
+  shell: "grep -c '^LoginGraceTime 1m' /etc/ssh/sshd_config || true"
+  register: sshlgt
+  tags:
+    - 5.2.14
+    - section5
+    - level1
+
+- name: 5.2.14 If SSH LoginGraceTime is 1m, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.14 "
+    line: "5.2.14 SSH LoginGraceTime is 1m: PASS"
+  when:
+    - sshlgt.stdout >= "1"
+  tags:
+    - 5.2.14
+    - section5
+    - level1
+
+
+- name: 5.2.16 Ensure SSH warning banner is configured
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^Banner "
+    line: "Banner /etc/issue"
+    insertafter: "#Banner"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.2.16
+    - section5
+    - level1
+
+- name: 5.2.16 Test to see if SSH banner is configured
+  shell: "grep -c '^Banner /etc/issue' /etc/ssh/sshd_config || true"
+  register: sshbanner
+  tags:
+    - 5.2.16
+    - section5
+    - level1
+
+- name: 5.2.16 If SSH Banner is set to /etc/issue, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.2.16 "
+    line: "5.2.16 SSH Banner set to /etc/issue: PASS"
+  when:
+    - sshbanner.stdout >= "1"
+  tags:
+    - 5.2.16
+    - section5 
+    - level1
+
+
+- name: 5.3.4 Ensure password hashing algorithm is SHA-512
+  shell: "authconfig --passalgo=sha512 --update"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.4
+    - section5
+    - level1
+
+- name: 5.3.4 Test if the hasing algorithm is SHA-512
+  shell: "authconfig --test | grep -c sha512 || true"
+  register: checkpwalgo
+  tags:
+    - 5.3.4
+    - section5
+    - level1
+
+- name: 5.3.4 If SSH Banner is set to /etc/issue, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.3.4 "
+    line: "5.3.4 Ensure password algorithm is set to SHA512: PASS"
+  when:
+    - checkpwalgo.stdout >= "1"
+  tags:
+    - 5.3.4
+    - section5
+    - level1
+
+
+- name: 5.3.1 Ensure password creation requirements configured for lcredit
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^lcredit = "
+    line: "lcredit = -1"
+    insertafter: "# lcredit = "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Ensure password creation requirements configured for minlen
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^minlen = "
+    line: "minlen = 14"
+    insertafter: "# minlen = "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Ensure password creation requirements configured for dcredit
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^dcredit = "
+    line: "dcredit = -1"
+    insertafter: "# dcredit = "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Ensure password creation requirements configured for ucredit
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^ucredit = "
+    line: "ucredit = -1"
+    insertafter: "# ucredit = "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Ensure password creation requirements configured for ocredit
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^ocredit = "
+    line: "ocredit = -1"
+    insertafter: "# ocredit = "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Ensure password creation requirements configured /etc/pam.d/password-auth
+  lineinfile:
+    path: /etc/pam.d/password-auth
+    regexp: "^password    requisite"
+    line: "password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type="
+    insertbefore: "password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pam variables are configured to policy
+  shell: "grep -c '^password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=' /etc/pam.d/password-auth || true"
+  register: pwpamd
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pwquality variables are configured to policy lcredit
+  shell: "grep -c '^lcredit = -1' /etc/security/pwquality.conf || true"
+  register: pwlcredit
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pwquality variables are configured to policy ocredit
+  shell: "grep -c '^ocredit = -1' /etc/security/pwquality.conf || true"
+  register: pwocredit
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pwquality variables are configured to policy dcredit
+  shell: "grep -c '^dcredit = -1' /etc/security/pwquality.conf || true"
+  register: pwdcredit
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pwquality variables are configured to policy ucredit
+  shell: "grep -c '^ucredit = -1' /etc/security/pwquality.conf || true"
+  register: pwucredit
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+- name: 5.3.1 Test to see if pwquality variables are configured to policy minlen
+  shell: "grep -c '^minlen = 14' /etc/security/pwquality.conf || true"
+  register: pwminlen
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+
+
+- name: 5.3.1 IF password creation requirements are configured, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.3.1 "
+    line: "5.3.1 Ensure password creation requirements are configured: PASS"
+  when:
+    - pwpamd.stdout >= "1"
+    - pwlcredit.stdout >= "1"
+    - pwocredit.stdout >= "1"
+    - pwucredit.stdout >= "1"
+    - pwdcredit.stdout >= "1"
+    - pwminlen.stdout >= "1"
+    - pwlcredit.stdout >= "1"
+  tags:
+    - 5.3.1
+    - section5
+    - level1
+  
+
+- name: 5.3.3 Ensure password remember requirements configured /etc/pam.d/password-auth
+  lineinfile:
+    path: /etc/pam.d/password-auth
+    regexp: "^password    sufficient"
+    line: "password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5"
+    insertbefore: "password    required    pam_deny.so"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.3
+    - section5
+    - level1
+
+- name: 5.3.3 Ensure password remember requirements configured /etc/pam.d/system-auth
+  lineinfile:
+    path: /etc/pam.d/system-auth
+    regexp: "^password    sufficient"
+    line: "password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5"
+    insertbefore: "password    required    pam_deny.so"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.3
+    - section5
+    - level1
+
+- name: 5.3.3 Test to see if pam variables are configured to policy
+  shell: "grep -c '^password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5' /etc/pam.d/password-auth || true"
+  register: pwremember1
+  tags:
+    - 5.3.3
+    - section5
+    - level1
+
+- name: 5.3.3 Test to see if pam variables are configured to policy
+  shell: "grep -c '^password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5' /etc/pam.d/system-auth || true"
+  register: pwremember2
+  tags:
+    - 5.3.3
+    - section5
+    - level1
+
+- name: 5.3.3 IF password re-use requirements are configured, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.3.3 "
+    line: "5.3.3 Ensure password creation requirements are configured: PASS"
+  when:
+    - pwremember1.stdout >= "1"
+    - pwremember2.stdout >= "1"
+  tags:
+    - 5.3.3
+    - section5
+    - level1
+
+
+- name: 5.3.2 Install faillock modules in PAM for account lockout in password-auth
+  blockinfile:
+    path: /etc/pam.d/password-auth
+    insertbefore: "auth        required      pam_deny.so"
+    block: |
+      auth        requisite     pam_faillock.so preauth deny=5 unlock_time=300
+      auth        [success=1 default=bad] pam_unix.so
+      auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=300
+      auth        sufficient    pam_faillock.so authsucc audit deny=5 unlock_time=300
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.2
+    - section5
+    - level1
+
+- name: 5.3.2 Install faillock modules in PAM for account lockout in system-auth
+  blockinfile:
+    path: /etc/pam.d/system-auth
+    insertbefore: "auth        required      pam_deny.so"
+    block: |
+      auth        requisite     pam_faillock.so preauth deny=5 unlock_time=300
+      auth        [success=1 default=bad] pam_unix.so
+      auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=300
+      auth        sufficient    pam_faillock.so authsucc audit deny=5 unlock_time=300
+  when:
+    - audit == "FALSE"
+  tags:
+    - 5.3.2
+    - section5
+    - level1
+
+- name: 5.3.2 Check to see if faillock modules exist in /etc/pam.d/password-auth
+  shell: "grep -c pam_faillock.so /etc/pam.d/password-auth || true"
+  register: faillock1
+  tags:
+    - 5.3.2
+    - section5
+    - level1
+
+- name: 5.3.2 Check to see if faillock modules exist in /etc/pam.d/system-auth
+  shell: "grep -c pam_faillock.so /etc/pam.d/system-auth || true"
+  register: faillock2
+  tags:
+    - 5.3.2
+    - section5
+    - level1
+
+- name: 5.3.2 IF password pam faillock module is installed, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.3.2 "
+    line: "5.3.2 Ensure account lockout is configured for consective invalid passwords: PASS"
+  when:
+    - faillock1.stdout >= "3"
+    - faillock2.stdout >= "3"
+  tags:
+    - 5.3.2
+    - section5
+    - level1
+
+
+- name: 5.4.1.1 Ensure password expiration is 45 days
+  lineinfile:
+    path: /etc/login.defs
+    regexp: "^PASS_MAX_DAYS "
+    line: "PASS_MAX_DAYS 45"
+    insertafter: "## PASS_MAX_DAYS       99999"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.1
+    - section5
+    - level1
+
+- name: 5.4.1.1 Test if password expiration is 45 days
+  shell: "egrep '^PASS_MAX_DAYS' /etc/login.defs  | awk '{ print $2 }'|| true"
+  register: passmaxdays
+  tags:
+    - 5.4.1.1
+    - section5
+    - level1
+
+- name: 5.4.1.1 If password expiratation is set to 45 days, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.1 "
+    line: "5.4.1.1 Ensure password expiration is set to 45 days: PASS"
+  when:
+    - passmaxdays.stdout == "45"
+  tags:
+    - 5.4.1.1
+    - section5
+    - level1
+  
+- name: 5.4.1.2 Ensure password persistency is 2 days
+  lineinfile:
+    path: /etc/login.defs
+    regexp: "^PASS_MIN_DAYS "
+    line: "PASS_MIN_DAYS 2"
+    insertafter: "## PASS_MIN_DAYS       0"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.2
+    - section5
+    - level1
+
+- name: 5.4.1.2 Test if password persistency is 2 days
+  shell: "egrep '^PASS_MIN_DAYS' /etc/login.defs | awk '{ PRint $2 }'|| true"
+  register: passmindays
+  tags:
+    - 5.4.1.2
+    - section5
+    - level1
+
+- name: 5.4.1.2 If password persistency is 2 days, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.2 "
+    line: "5.4.1.2 Ensure password persistency is set to 2 days: PASS"
+  when:
+    - passmindays.stdout == "2"
+  tags:
+    - 5.4.1.2
+    - section5
+    - level1
+
+- name: 5.4.1.3 Ensure password expiration warning is 7 days
+  lineinfile:
+    path: /etc/login.defs
+    regexp: "^PASS_WARN_AGE "
+    line: "PASS_WARN_AGE 7"
+    insertafter: "## PASS_WARN_AGE       7"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.3
+    - section5
+    - level1
+
+- name: 5.4.1.3 Test if password expiration warning is 7 days 
+  shell: "egrep '^PASS_WARN_AGE' /etc/login.defs | awk '{ print $2 }'|| true"
+  register: passwarnage
+  tags:
+    - 5.4.1.3
+    - section5
+    - level1
+
+- name: 5.4.1.3 If password expiration warning is 7 days, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.3 "
+    line: "5.4.1.3 Ensure password expiration warning is 7 days: PASS"
+  when:
+    - passwarnage.stdout == "2"
+    - audit == "FALSE"
+  tags:
+    - 5.4.1.3
+    - section5
+    - level1
+
+- name: 5.4.1.4 Ensure inactive account use is set to 30 days
+  shell: "useradd -D -f 30" 
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.4
+    - section5
+    - level1
+
+- name: 5.4.1.4 Test if inactive account use is set to 30 days
+  shell: "useradd -D | grep INACTIVE | awk -F\"=\" '{ print $2 }'|| true"
+  register: acctinactive
+  tags:
+    - 5.4.1.4
+    - section5
+    - level1
+
+- name: 5.4.1.4 If account is idle 30 days, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    rection5gexp: "^5.4.1.4 "
+    line: "5.4.1.4 Ensure account lockout if 30 days idle: PASS"
+  when: acctinactive.stdout == "30"
+  tags:
+    - 5.4.1.4
+    - section5
+    - level1
+
+- name: 5.4.1.6 Ensure default group for root account is GID 0
+  shell: "usermod -g 0 root"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.6
+    - section5
+    - level1
+
+- name: 5.4.1.6 Test if password expiration warning is 7 days
+  shell: "egrep 'root:' /etc/password | awk -F\"=\" '{ print $4 }'|| true"
+  register: rootgroup
+  tags:
+    - 5.4.1.6
+    - section5
+    - level1
+
+- name: 5.4.1.6 If root default group is 0, record in log as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.6 "
+    line: "5.4.1.6 Ensure root's primary group is 0: PASS"
+  when:
+    - rootgroup.stdout == "0"
+  tags:
+    - 5.4.1.6
+    - section5
+    - level1
+
+- name: 5.4.1.7 Ensure default user umask is 027 or more restrictive /etc/bashrc
+  lineinfile:
+    path: /etc/bashrc
+    regexp: "umask 0"
+    line: "umask 027"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 Ensure default user umask is 027 or more restrictive /etc/csh.cshrc
+  lineinfile:
+    path: /etc/csh.cshrc
+    regexp: "umask 0"
+    line: "umask 027"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 Ensure default user umask is 027 or more restrictive /etc/profile
+  lineinfile:
+    path: /etc/profile
+    regexp: "umask 0"
+    line: "umask 027"
+  when: audit == "FALSE"
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 Test to see if user umask is 027 for /etc/bashrc
+  shell: "grep -c 'umask 027' /etc/bashrc || true "
+  register: umaskbashrc
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 Test to see if user umask is 027 for /etc/profile
+  shell: "grep -c 'umask 027' /etc/profile || true "
+  register: umaskprofile
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 Test to see if user umask is 027 for /etc/csh.cshrc
+  shell: "grep -c 'umask 027' /etc/csh.cshrc || true "
+  register: umaskcsh
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 If default umask is 027, then record as true
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.7 "
+    line: "5.4.1.7 Ensure account lockout if 30 days idle: PASS"
+  when:
+    - umaskbashrc.stdout >= "1"
+    - umaskprofile.stdout >= "1"
+    - umaskcsh.stdout >= "1"
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+- name: 5.4.1.7 If default umask is != 027, then record as fail
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^5.4.1.7 "
+    line: "5.4.1.7 Ensure account lockout if 30 days idle: FAIL"
+  when:
+    - umaskbashrc.stdout <= "1"
+    - umaskprofile.stdout <= "1"
+    - umaskcsh.stdout <= "1"
+  tags:
+    - 5.4.1.7
+    - section5
+    - level1
+
+
+- name: 6.1.2 Ensure permissions /etc/passwd are configured
+  file: path=/etc/passwd owner=root group=root state=touch mode="0664"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+- name: 6.1.2 Check for other/read permissions on /etc/passwd
+  shell: "ls -al /etc/passwd | cut -c8"
+  register: passwdor
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+- name: 6.1.2 Check for other/write permissions on /etc/passwd
+  shell: "ls -al /etc/passwd | cut -c9"
+  register: passwdow
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+- name: 6.1.2 Check for other/execute permissions on /etc/passwd
+  shell: "ls -al /etc/passwd | cut -c10"
+  register: passwdox
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+- name: 6.1.2 Tag check as PASS if /etc/passwd is not world writeable
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.2 "
+    line: "6.1.2 Check if /etc/passwd permissions are correct:  PASS"
+  when:
+    - passwdor.stdout == "r" or passwdor.stdout == "R" 
+    - passwdow.stdout != "w" or passwdow.stdout != "W" 
+    - passwdox.stdout != "x" or passwdox.stdout != "X"
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+- name: 6.1.2 FAIL if /etc/passwd is not world writeable
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.2 "
+    line: "6.1.2 Check if /etc/passwd permissions are correct: FAIL"
+  when:
+    - passwdor.stdout != "r" or passwdor.stdout != "R"
+    - passwdow.stdout == "w" or passwdow.stdout == "W"
+    - passwdox.stdout == "x" or passwdox.stdout == "X"
+  tags:
+    - 6.1.2
+    - section6
+    - level1
+
+
+- name: 6.1.3 Ensure permissions /etc/shadow are configured
+  file: path=/etc/shadow owner=root group=root state=touch mode="0000"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+- name: 6.1.3 Check for other/read permissions on /etc/shadow
+  shell: "ls -al /etc/shadow | cut -c8"
+  register: shadowor
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+- name: 6.1.3 Check for other/write permissions on /etc/shadow
+  shell: "ls -al /etc/shadow | cut -c9"
+  register: shadowow
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+- name: 6.1.3 Check for other/execute permissions on /etc/shadow
+  shell: "ls -al /etc/shadow | cut -c10"
+  register: shadowox
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+- name: 6.1.3 Check as PASS if /etc/shadow has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.3 "
+    line: "6.1.3 Check if /etc/shadow permissions are correct:  PASS"
+  when:
+    - shadowor.stdout != "r" or shadowor.stdout != "R" 
+    - shadowow.stdout != "w" or shadowow.stdout != "W" 
+    - shadowox.stdout != "x" or shadowox.stdout != "X"
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+- name: 6.1.3 Check as FAIL if /etc/shadow has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.3 "
+    line: "6.1.3 Check if /etc/shadow permissions are correct: FAIL"
+  when:
+    - shadowor.stdout == "r" or shadowor.stdout == "R"
+    - shadowow.stdout == "w" or shadowow.stdout == "W"
+    - shadowox.stdout == "x" or shadowox.stdout == "X"
+  tags:
+    - 6.1.3
+    - section6
+    - level1
+
+
+- name: 6.1.4 Ensure permissions /etc/group are configured
+  file: path=/etc/group owner=root group=root state=touch mode="0644"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+- name: 6.1.4 Check for other/read permissions on /etc/group
+  shell: "ls -al /etc/group | cut -c8"
+  register: groupor
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+- name: 6.1.4 Check for other/write permissions on /etc/group
+  shell: "ls -al /etc/group | cut -c9"
+  register: groupow
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+- name: 6.1.4 Check for other/execute permissions on /etc/group
+  shell: "ls -al /etc/group | cut -c10"
+  register: groupox
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+- name: 6.1.4 Check as PASS if /etc/group has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.4 "
+    line: "6.1.4 Check if /etc/group permissions are correct:  PASS"
+  when:
+    - groupor.stdout == "r" or groupor.stdout == "R" 
+    - groupow.stdout != "w" or groupow.stdout != "W" 
+    - groupox.stdout != "x" or groupox.stdout != "X"
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+- name: 6.1.4 Check as PASS if /etc/group has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.4 "
+    line: "6.1.4 Check if /etc/group permissions are correct: FAIL"
+  when:
+    - groupor.stdout != "r" or groupor.stdout != "R"
+    - groupow.stdout == "w" or groupow.stdout == "W"
+    - groupox.stdout == "x" or groupox.stdout == "X"
+  tags:
+    - 6.1.4
+    - section6
+    - level1
+
+
+- name: 6.1.5 Ensure permissions /etc/gshadow are configured
+  file: path=/etc/gshadow owner=root group=root state=touch mode="0000"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+- name: 6.1.5 Check for other/read permissions on /etc/gshadow
+  shell: "ls -al /etc/gshadow | cut -c8"
+  register: gshadowor
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+- name: 6.1.5 Check for other/write permissions on /etc/gshadow
+  shell: "ls -al /etc/gshadow | cut -c9"
+  register: gshadowow
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+- name: 6.1.5 Check for other/execute permissions on /etc/gshadow
+  shell: "ls -al /etc/gshadow | cut -c10"
+  register: gshadowox
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+- name: 6.1.5 Check as PASS if /etc/gshadow has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.5 "
+    line: "6.1.5 Check if /etc/gshadow permissions are correct:  PASS"
+  when:
+    - gshadowor.stdout != "r" or gshadowor.stdout != "R" 
+    - gshadowow.stdout != "w" or gshadowow.stdout != "W" 
+    - gshadowox.stdout != "x" or gshadowox.stdout != "X"
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+- name: 6.1.5 Check as FAIL if /etc/gshadow has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.5 "
+    line: "6.1.5 Check if /etc/gshadow permissions are correct:  FAIL"
+  when:
+    - gshadowor.stdout == "r" or gshadowor.stdout == "R"
+    - gshadowow.stdout == "w" or gshadowow.stdout == "W"
+    - gshadowox.stdout == "x" or gshadowox.stdout == "X"
+  tags:
+    - 6.1.5
+    - section6
+    - level1
+
+
+- name: 6.1.6 Ensure permissions /etc/passwd- are configured
+  file: path=/etc/passwd- owner=root group=root state=touch mode="0644"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+- name: 6.1.6 Check for other/read permissions on /etc/passwd-
+  shell: "ls -al /etc/passwd- | cut -c8"
+  register: passwddashor
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+- name: 6.1.6 Check for other/write permissions on /etc/passwd-
+  shell: "ls -al /etc/passwd- | cut -c9"
+  register: passwddashow
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+- name: 6.1.6 Check for other/execute permissions on /etc/passwd-
+  shell: "ls -al /etc/passwd- | cut -c10"
+  register: passwddashox
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+- name: 6.1.6 Check as PASS if /etc/passwd- has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.6 "
+    line: "6.1.6 Check if /etc/passwd- permissions are correct:  PASS"
+  when:
+    - passwddashor.stdout == "r" or passwddashor.stdout == "R" 
+    - passwddashow.stdout != "w" or passwddashow.stdout != "W" 
+    - passwddashox.stdout != "x" or passwddashox.stdout != "X"
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+- name: 6.1.6 Check as FAIL if /etc/passwd- has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.6 "
+    line: "6.1.6 Check if /etc/passwd- permissions are correct: FAIL"
+  when:
+    - passwddashor.stdout != "r" or passwddashor.stdout != "R"
+    - passwddashow.stdout == "w" or passwddashow.stdout == "W"
+    - passwddashox.stdout == "x" or passwddashox.stdout == "X"
+  tags:
+    - 6.1.6
+    - section6
+    - level1
+
+
+- name: 6.1.7 Ensure permissions /etc/shadow- are configured
+  file: path=/etc/shadow- owner=root group=root state=touch mode="0000"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+- name: 6.1.7 Check for other/read permissions on /etc/shadow-
+  shell: "ls -al /etc/shadow- | cut -c8"
+  register: shadowdashor
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+- name: 6.1.7 Check for other/write permissions on /etc/shadow-
+  shell: "ls -al /etc/shadow- | cut -c9"
+  register: shadowdashow
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+- name: 6.1.7 Check for other/execute permissions on /etc/shadow-
+  shell: "ls -al /etc/shadow- | cut -c10"
+  register: shadowdashox
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+- name: 6.1.7 Tag check as PASS if /etc/shadow- has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.7 "
+    line: "6.1.7 Check if /etc/shadow- permissions are correct:  PASS"
+  when:
+    - shadowdashor.stdout != "r" or shadowdashor.stdout != "R" 
+    - shadowdashow.stdout != "w" or shadowdashow.stdout != "W" 
+    - shadowdashox.stdout != "x" or shadowdashox.stdout != "X"
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+- name: 6.1.7 Tag check as FAIL if /etc/shadow- has no "other read" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.7 "
+    line: "6.1.7 Check if /etc/shadow- permissions are correct: FAIL"
+  when:
+    - shadowdashor.stdout == "r" or shadowdashor.stdout == "R"
+    - shadowdashow.stdout == "w" or shadowdashow.stdout == "W"
+    - shadowdashox.stdout == "x" or shadowdashox.stdout == "X"
+  tags:
+    - 6.1.7
+    - section6
+    - level1
+
+
+- name: 6.1.9 Ensure permissions /etc/gshadow- are configured
+  file: path=/etc/gshadow- owner=root group=root state=touch mode="0000"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+- name: 6.1.9 Check for other/read permissions on /etc/gshadow-
+  shell: "ls -al /etc/gshadow- | cut -c8"
+  register: ggshadowdashor
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+- name: 6.1.9 Check for other/write permissions on /etc/gshadow-
+  shell: "ls -al /etc/gshadow- | cut -c9"
+  register: ggshadowdashow
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+- name: 6.1.9 Check for other/execute permissions on /etc/gshadow-
+  shell: "ls -al /etc/gshadow- | cut -c10"
+  register: ggshadowdashox
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+- name: 6.1.9 Tag check as PASS if /etc/gshadow- has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.9 "
+    line: "6.1.9 Check if /etc/gshadow- permissions are correct:  PASS"
+  when:
+    - ggshadowdashor.stdout != "r" or ggshadowdashor.stdout != "R" 
+    - ggshadowdashow.stdout != "w" or ggshadowdashow.stdout != "W" 
+    - ggshadowdashox.stdout != "x" or ggshadowdashox.stdout != "X"
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+- name: 6.1.9 Tag check as FAIL if /etc/gshadow- has no "other" permissions
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.9 "
+    line: "6.1.9 Check if /etc/gshadow- permissions are correct: FAIL"
+  when:
+    - ggshadowdashor.stdout == "r" or ggshadowdashor.stdout == "R"
+    - ggshadowdashow.stdout == "w" or ggshadowdashow.stdout == "W"
+    - ggshadowdashox.stdout == "x" or ggshadowdashox.stdout == "X"
+  tags:
+    - 6.1.9
+    - section6
+    - level1
+
+
+- name: 6.1.10 Ensure no world writable file exists
+  shell: "find / -not -type l -type f -perm -o+w | grep -v ^/sys | grep -v ^/proc | grep -v ^/run | xargs -I {} chmod o-w {}"
+  when: audit == "FALSE"
+  tags:
+    - 6.1.10
+    - section6
+    - level1
+
+- name: 6.1.10 Teest for world writable files
+  shell: "find / -not -type l -type f -perm -o+w | grep -v ^/sys | grep -v ^/proc | grep -v ^/run | wc -l"
+  register: worldwrite
+  tags:
+    - 6.1.10
+    - section6
+    - level1
+
+- name: 6.1.10 If there are not world writeable files, record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.10 "
+    line: "6.1.10 Ensure no world writeable files are found:  PASS"
+  when:
+    - worldwrite.stdout == "0"
+  tags:
+    - 6.1.10
+    - section6
+    - level1
+
+- name: 6.1.10 If there are not world writeable files, record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.10 "
+    line: "6.1.10 Ensure no world writeable files are found: FAIL"
+  when:
+    - worldwrite.stdout != "0"
+  tags:
+    - 6.1.10
+    - section6
+    - level1
+
+
+- name: 6.1.11 Ensure no unowned files or directories exist
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser | xargs -I '{}' chown nobody '{}'"
+  when: 
+    - audit == "FALSE"
+  tags:
+    - 6.1.11
+    - section6
+    - level1
+
+- name: 6.1.11 Test for unowned files or directories
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser | wc -l"
+  register: unownedfiles
+  tags:
+    - 6.1.11
+    - section6
+    - level1
+
+- name: 6.1.11 If there are unowned files, record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.11 "
+    line: "6.1.11 Ensure no unowned files or directories are found:  PASS"
+  when:
+    - unownedfiles.stdout == "0"
+  tags:
+    - 6.1.11
+    - section6
+    - level1
+
+- name: 6.1.11 If there are unowned files, record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.11 "
+    line: "6.1.11 Ensure no unowned files or directories are found: FAIL"
+  when:
+    - unownedfiles.stdout != "0"
+  tags:
+    - 6.1.11
+    - section6
+    - level1
+
+
+- name: 6.1.12 Ensure no ungrouped files or directories exist
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup | xargs -I '{}' chgrp nobody '{}'"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.1.12
+    - section6
+    - level1
+
+- name: 6.1.12 Test for ungrouped files or directories
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup | wc -l"
+  register: ungroupedfiles
+  tags:
+    - 6.1.12
+    - section6
+    - level1
+
+
+- name: 6.1.12 If there are not any ungrouped files, record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.12 "
+    line: "6.1.12 Ensure no ungrouped files or directories are found:  PASS"
+  when:
+    - ungroupedfiles.stdout == "0"
+  tags:
+    - 6.1.12
+    - section6
+    - level1
+
+- name: 6.1.12 If there are not any ungrouped files, record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.1.12 "
+    line: "6.1.12 Ensure no ungrouped files or directories are found: FAIL"
+  when:
+    - ungroupedfiles.stdout != "0"
+  tags:
+    - 6.1.12
+    - section6
+    - level1
+
+
+- name: 6.1.13 Generate audit file for SUID executables
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 | xargs -I '{}' ls -ald '{}' > {{ auditsuexe }}"
+  tags:
+    - 6.1.13
+    - section6
+    - level1
+
+- name: 6.1.14 Generate audit file for SGUID executables
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 | xargs -I '{}' ls -ald '{}' > {{ auditsgexe }}"
+  tags:
+    - 6.1.14
+    - section6
+    - level1
+
+
+- name: 6.2.1 Ensure there are no empty passwords in /etc/shadow
+  shell: "cat /etc/shadow | awk -F: '($2 == \"\") { print $1 }'| xargs -I '{}' passwd -l '{}'"
+  when: 
+    - audit == "FALSE"
+  tags:
+    - 6.2.1
+    - section6
+    - level1
+
+- name: 6.2.1 Test to see if there are empty passwords in /etc/shadow
+  shell: "cat /etc/shadow | awk -F: '($2 == \"\") { print $1 }'| wc -l "
+  register: emptypw
+  tags:
+    - 6.2.1
+    - section6
+    - level1
+
+- name: 6.2.1 If there are no empty passwords, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.1 "
+    line: "6.2.1 Ensure that there are no accounts with empty passwords:  PASS"
+  when:
+    - emptypw.stdout == "0"
+  tags:
+    - 6.2.1
+    - section6
+    - level1
+
+- name: 6.2.1 If there are no empty passwords, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.1 "
+    line: "6.2.1 Ensure that there are no accounts with empty passwords: FAIL"
+  when:
+    - emptypw.stdout != "0"
+  tags:
+    - 6.2.1
+    - section6
+    - level1
+
+
+- name: 6.2.2 Test to see if there are any NIS markers in /etc/passwd
+  shell: "grep -c '^+:' /etc/passwd || true "
+  register: nispw
+  tags:
+    - 6.2.2
+    - section6
+    - level1
+
+- name: 6.2.2 If there are no NIS markers in /etc/passwd, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.2 "
+    line: "6.2.2 Ensure that there are no NIS markers in /etc/passwd: PASS"
+  when:
+    - nispw.stdout == "0"
+  tags:
+    - 6.2.2
+    - section6
+    - level1
+
+- name: 6.2.2 If there are no NIS markers in /etc/passwd, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.2 "
+    line: "6.2.2 Ensure that there are no NIS markers in /etc/passwd: FAIL"
+  when:
+    - nispw.stdout != "0"
+  tags:
+    - 6.2.2
+    - section6
+    - level1
+
+
+- name: 6.2.3 Test to see if there are any NIS markers in /etc/shadow
+  shell: "grep -c '^+:' /etc/shadow || true "
+  register: nisshadow
+  tags:
+    - 6.2.3
+    - section6
+    - level1
+
+- name: 6.2.3 If there are no NIS markers in /etc/shadow, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.3 "
+    line: "6.2.3 Ensure that there are no NIS markers in /etc/shadow: PASS"
+  when:
+    - nisshadow.stdout == "0"
+  tags:
+    - 6.2.3
+    - section6
+    - level1
+
+- name: 6.2.3 If there are no NIS markers in /etc/shadow, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.3 "
+    line: "6.2.3 Ensure that there are no NIS markers in /etc/shadow: FAIL"
+  when:
+    - nisshadow.stdout != "0"
+  tags:
+    - 6.2.3
+    - section6
+    - level1
+
+
+- name: 6.2.4 Test to see if there are any NIS markers in /etc/group
+  shell: "grep -c '^+:' /etc/group || true "
+  register: nisgpw
+  tags:
+    - 6.2.4
+    - section6
+    - level1
+
+- name: 6.2.4 If there are no NIS markers in /etc/group, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.4 "
+    line: "6.2.4 Ensure that there are no NIS markers in /etc/group: PASS"
+  when:
+    - nisgpw.stdout == "0"
+  tags:
+    - 6.2.4
+    - section6
+    - level1
+
+- name: 6.2.4 If there are no NIS markers in /etc/group, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.4 "
+    line: "6.2.4 Ensure that there are no NIS markers in /etc/group: FAIL"
+  when:
+    - nisgpw.stdout != "0"
+  tags:
+    - 6.2.4
+    - section6
+    - level1
+
+
+- name: 6.2.5 Ensure root is the only UID 0 account
+  shell: "awk -F: '($3 == 0) { print $1 }' /etc/passwd | grep -v root | xargs -I {} passwd -l {}"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.5
+    - section6
+    - level1
+
+- name: 6.2.5 Test to see if root is the only UID account
+  shell: "awk -F: '($3 == 0) { print $1 }' /etc/passwd | grep -v root | wc -l "
+  register: rootzero
+  tags:
+    - 6.2.5
+    - section6
+    - level1
+
+- name: 6.2.5 If root is the only UID=0 account, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.5 "
+    line: "6.2.5 Ensure only root has uid=0: PASS"
+  when:
+    - rootzero.stdout == "0"
+  tags:
+    - 6.2.5
+    - section6
+    - level1
+
+- name: 6.2.5 If root is the only UID=0 account, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.5 "
+    line: "6.2.5 Ensure only root has uid=0: FAIL"
+  when:
+    - rootzero.stdout != "0"
+  tags:
+    - 6.2.5
+    - section6
+    - level1
+
+
+- name: 6.2.6 Test to see if root PATH integrity is ok
+  shell: "/usr/local/sbin/cislevel1-6.2.6.sh | wc -l"
+  register: rootpath
+  tags:
+    - 6.2.6
+    - section6
+    - level1
+
+- name: 6.2.6 If root PATH integrity is ok, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.6 "
+    line: "6.2.6 Ensure root path integrity: PASS"
+  when:
+    - rootpath.stdout == "0"
+  tags:
+    - 6.2.6
+    - section6
+    - level1
+
+- name: 6.2.6 If root PATH integrity is ok, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.6 "
+    line: "6.2.6 Ensure root path integrity: FAIL"
+  when:
+    - rootpath.stdout != "0"
+  tags:
+    - 6.2.6
+    - section6
+    - level1
+
+
+- name: 6.2.7 Ensure all user home directories exist
+  shell: "cat /etc/passwd | awk -F: '{ print $1 \" \" $3 \" \" $6 }' | while read user uid dir; do   if [ $uid -ge 1000 -a ! -d \"$dir\" -a $user != \"nfsnobody\" ]; then mkdir -p $dir && chown $user $dir && chmod 700 $dir ;   fi ; done "
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.7
+    - section6
+    - level1
+
+- name: 6.2.7 Ensure all user home directories exist
+  shell: "cat /etc/passwd | awk -F: '{ print $1 \" \" $3 \" \" $6 }' | while read user uid dir; do   if [ $uid -ge 1000 -a ! -d \"$dir\" -a $user != \"nfsnobody\" ]; then echo FALSE; else echo PASS ;   fi ; done | grep -v TRUE | uniq"
+  register: homeyexist
+  tags:
+    - 6.2.7
+    - section6
+    - level1
+
+- name: 6.2.7 If all users have a homedir, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.7 "
+    line: "6.2.7 Ensure all users have a homedir: PASS"
+  when:
+    - homeyexist.stdout != "FALSE"
+  tags:
+    - 6.2.7
+    - section6
+    - level1
+
+- name: 6.2.7 If all users have a homedir, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.7 "
+    line: "6.2.7 Ensure all users have a homedir: FAIL"
+  when:
+    - homeyexist.stdout == "FALSE"
+  tags:
+    - 6.2.7
+    - section6
+    - level1
+
+
+- name: 6.2.9 Ensure users own their home directories
+  shell: "cat /etc/passwd | awk -F: '{ print $1 \" \" $3 \" \" $6 }' | while read user uid dir; do   if [ $uid -ge 1000 -a -d \"$dir\" -a $user != \"nfsnobody\" ]; then   owner=$(stat -L -c \"%U\" \"$dir\") ;     if [ \"$owner\" != \"$user\" ]; then chown $user $dir && chmod 700 $dir; fi ; fi ; done"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.9
+    - section6
+    - level1
+  
+- name: 6.2.9 Check to see if users own their home directories
+  shell: "cat /etc/passwd | awk -F: '{ print $1 \" \" $3 \" \" $6 }' | while read user uid dir; do   if [ $uid -ge 1000 -a -d \"$dir\" -a $user != \"nfsnobody\" ]; then   owner=$(stat -L -c \"%U\" \"$dir\") ;     if [ \"$owner\" != \"$user\" ]; then echo \"The home directory ($dir) of user $user is owned by $owner.\" ;     fi ; fi ; done  | wc -l"
+  register: nomortgage
+  tags:
+    - 6.2.9
+    - section6
+    - level1
+
+- debug:
+    var: nomortgage
+  tags:
+    - 6.2.9
+    - section6
+    - level1
+
+- name: 6.2.9 Test to see if user own their home directories, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.9 "
+    line: "6.2.9 Ensure users own their home directories: PASS"
+  when:
+    - nomortgage.stdout == "0"
+  tags:
+    - 6.2.9
+    - section6
+    - level1
+
+- name: 6.2.9 Test to see if user own their home directories, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.9 "
+    line: "6.2.9 Ensure users own their home directories: FAIL"
+  when:
+    - nomortgage.stdout != "0"
+  tags:
+    - 6.2.9
+    - section6
+    - level1
+
+
+- name: 6.2.10 Ensure users dot files are not group or world writable
+  shell: "for dir in `cat /etc/passwd | egrep -v '(root|sync|halt|shutdown)' | awk -F: '($7 != \"/usr/sbin/nologin\") { print $6 }'`; do   for file in $dir/.[A-Za-z0-9]*; do     if [ ! -h \"$file\" -a -f \"$file\" ]; then       fileperm=`ls -ld $file | cut -f1 -d\" \"` ;       if [ `echo $fileperm | cut -c6 ` != \"-\" ]; then chmod g-w $file ; fi ; if [ `echo $fileperm | cut -c9 ` != \"-\" ]; then chmod o-w $file ; fi ; fi ;   done ; done"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.10
+    - section6
+    - level1
+
+- name: 6.2.10 check that users dot files are not group or world writeable
+  shell: "for dir in `cat /etc/passwd | egrep -v '(root|sync|halt|shutdown)' | awk -F: '($7 != \"/usr/sbin/nologin\") { print $6 }'`; do   for file in $dir/.[A-Za-z0-9]*; do     if [ ! -h \"$file\" -a -f \"$file\" ]; then       fileperm=`ls -ld $file | cut -f1 -d\" \"` ;       if [ `echo $fileperm | cut -c6 ` != \"-\" ]; then        echo \"Group Write permission set on file $file\" ;fi ; if [ `echo $fileperm | cut -c9 ` != \"-\" ]; then  echo \"Other Write permission set on file $file\" ; fi ; fi ;   done ; done | wc -l "
+  register: dotfilesgow
+  tags:
+    - 6.2.10
+    - section6
+    - level1
+
+- name: 6.2.10 Test to see if dot files are not group or world writeable, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.10 "
+    line: "6.2.10 Ensure user dot files not group or other writeable: PASS"
+  when:
+    - dotfilesgow.stdout == "0"
+  tags:
+    - 6.2.10
+    - section6
+    - level1
+
+- name: 6.2.10 Test to see if dot files are not group or world writeable, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.10 "
+    line: "6.2.10 Ensure user dot files not group or other writeable: FAIL"
+  when:
+    - dotfilesgow.stdout != "0"
+  tags:
+    - 6.2.10
+    - section6
+    - level1
+
+
+- name: 6.2.11 Ensure user .forward files are not present
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do if [ ! -h \"$dir/.forward\" -a -f \"$dir/.forward\" ]; then mv $dir/.forward $dir/dot-forward; fi ; done"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.11
+    - section6
+    - level1
+
+- name: 6.2.11 Test if user .forward file exists
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do   if [ ! -h \"$dir/.forward\" -a -f \"$dir/.forward\" ]; then echo \".forward file $dir/.forward exists\" ;fi ; done | wc -l"
+  register: dotforward
+  tags:
+    - 6.2.11
+    - 6.2.12
+    - section6
+    - level1
+
+- name: 6.2.11 If dot forward files don't exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.11 "
+    line: "6.2.11 Ensure user .forward files do not exist: PASS"
+  when:
+    - dotforward.stdout == "0"
+  tags:
+    - 6.2.11
+    - section6
+    - level1
+
+- name: 6.2.11 If dot forward files don't exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.11 "
+    line: "6.2.11 Ensure user .forward files do not exist: FAIL"
+  when:
+    - dotforward.stdout != "0"
+  tags:
+    - 6.2.11
+    - section6
+    - level1
+
+
+- name: 6.2.12 Ensure user .netrc files are not present
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do if [ ! -h \"$dir/.netrc\" -a -f \"$dir/.netrc\" ]; then mv $dir/.netrc $dir/dot-netrc; fi ; done"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.12
+    - section6
+    - level1
+
+- name: 6.2.12 Test if user .netrc file exists
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do if [ ! -h \"$dir/.netrc\" -a -f \"$dir/.forward\" ]; then echo \".netrc file $dir/.netrc exists\" ; fi ; done | wc -l"
+  register: dotnetrc
+  tags:
+    - 6.2.12
+    - section6
+    - level1
+
+- name: 6.2.12 If dot netrc files don't exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.12 "
+    line: "6.2.12 Ensure user .netrc files do not exist: PASS"
+  when:
+    - dotforward.stdout != "0"
+  tags:
+    - 6.2.12
+    - section6
+    - level1
+
+- name: 6.2.12 If dot netrc files don't exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.12 "
+    line: "6.2.12 Ensure user .netrc files do not exist: FAIL"
+  when:
+    - dotforward.stdout == "0"
+  tags:
+    - 6.2.12
+    - section6
+    - level1
+
+
+- name: 6.2.14 Ensure user .rhosts files are not present
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do if [ ! -h \"$dir/.rhosts\" -a -f \"$dir/.rhosts\" ]; then mv $dir/.rhosts $dir/dot-rhosts; fi ; done"
+  when:
+    - audit == "FALSE"
+  tags:
+    - 6.2.14
+    - section6
+    - level1
+
+
+- name: 6.2.14 Test if user .rhosts file exists
+  shell: "for dir in `cat /etc/passwd | awk -F: '{ print $6 }'`; do   if [ ! -h \"$dir/.rhosts\" -a -f \"$dir/.rhosts\" ]; then echo \".rhosts file $dir/.rhosts exists\" ;   fi ; done | wc -l"
+  register: dotrhosts
+  tags:
+    - 6.2.14
+    - section6
+    - level1
+
+- name: 6.2.14 If dot rhosts files don't exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.14 "
+    line: "6.2.14 Ensure user .rhosts files do not exist: PASS"
+  when:
+    - dotrhosts.stdout == "0"
+  tags:
+    - 6.2.14
+    - section6
+    - level1
+
+- name: 6.2.14 If dot rhosts files don't exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.14 "
+    line: "6.2.14 Ensure user .rhosts files do not exist: FAIL"
+  when:
+    - dotrhosts.stdout != "0"
+  tags:
+    - 6.2.14
+    - section6
+    - level1
+
+
+- name: 6.2.15 Test that all groups in /etc/passwd exist in /etc/group
+  shell: "for i in $(cut -s -d: -f4 /etc/passwd | sort -u ); do   grep -q -P \"^.*?:[^:]*:$i:\" /etc/group ;   if [ $? -ne 0 ]; then echo \"Group $i is referenced by /etc/passwd but does not exist in /etc/group\" ;   fi ; done | wc -l"
+  register: allgroupsmatch
+  tags:
+    - 6.2.15
+    - section6
+    - level1
+
+- name: 6.2.15 If all groups in /etc/passwd exist in /etc/group, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.15 "
+    line: "6.2.15 Ensure all group in /etc/passwd exist in /etc/group: PASS"
+  when:
+    - allgroupsmatch.stdout == "0"
+  tags:
+    - 6.2.15
+    - section6
+    - level1
+
+- name: 6.2.15 If all groups in /etc/passwd exist in /etc/group, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.15 "
+    line: "6.2.15 Ensure all group in /etc/passwd exist in /etc/group: FAIL"
+  when:
+    - allgroupsmatch.stdout != "0"
+  tags:
+    - 6.2.15
+    - section6
+    - level1
+
+
+- name: 6.2.16 Test to see if any duplicate UIDs exist
+  shell: "cat /etc/passwd | cut -f3 -d\":\" | sort -n | uniq -c | while read x ; do   [ -z \"${x}\" ] && break ;   set - $x ;   if [ $1 -gt 1 ]; then      users=`awk -F: '($3 == n) { print $1 }' n=$2 /etc/passwd | xargs` ;     echo \"Duplicate UID ($2): ${users}\" ;   fi ; done | wc -l "
+  register: dupuids
+  tags:
+    - 6.2.16
+    - section6
+    - level1
+
+- name: 6.2.16 If no duplicate UIDs exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.16 "
+    line: "6.2.16 No duplicate UIDs exist: PASS"
+  when:
+    - dupuids.stdout == "0"
+  tags:
+    - 6.2.16
+    - section6
+    - level1
+
+- name: 6.2.16 If no duplicate UIDs exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.16 "
+    line: "6.2.16 No duplicate UIDs exist: FAIL"
+  when:
+    - dupuids.stdout != "0"
+  tags:
+    - 6.2.16
+    - section6
+    - level1
+
+
+- name: 6.2.17 Test to see if any duplicate group IDs exist
+  shell: "cat /etc/group | cut -f3 -d\":\" | sort -n | uniq -c | while read x ; do   [ -z \"${x}\" ] && break ;   set - $x ;   if [ $1 -gt 1 ]; then     groups=`awk -F: '($3 == n) { print $1 }' n=$2 /etc/group | xargs` ;     echo \"Duplicate GID ($2): ${groups}\" ;   fi ; done | wc -l"
+  register: dupgids
+  tags:
+    - 6.2.17
+    - section6
+    - level1
+
+- name: 6.2.17 If no duplicate GIDs exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.17 "
+    line: "6.2.17 No duplicate GIDs exist: PASS"
+  when:
+    - dupgids.stdout == "0"
+  tags:
+    - 6.2.17
+    - section6
+    - level1
+
+- name: 6.2.17 If no duplicate GIDs exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.17 "
+    line: "6.2.17 No duplicate GIDs exist: FAIL"
+  when:
+    - dupgids.stdout != "0"
+  tags:
+    - 6.2.17
+    - section6
+    - level1
+
+
+- name: 6.2.18 Test to see if any duplicate users logins exist in /etc/passwd
+  shell: "cat /etc/passwd | cut -f1 -d\":\" | sort -n | uniq -c | while read x ; do   [ -z \"${x}\" ] && break ;   set - $x ;   if [ $1 -gt 1 ]; then      uids=`awk -F: '($1 == n) { print $3 }' n=$2 /etc/passwd | xargs` ;     echo \"Duplicate User Name ($2): ${uids}\" ;   fi ; done | wc -l"
+  register: duplogins
+  tags:
+    - 6.2.18
+    - section6
+    - level1
+
+- name: 6.2.18 If no duplicate GIDs exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.18 "
+    line: "6.2.18 No duplicate logins exist in /etc/passwd: PASS"
+  when:
+    - duplogins.stdout == "0"
+  tags:
+    - 6.2.18
+    - section6
+    - level1
+
+- name: 6.2.18 If no duplicate GIDs exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.18 "
+    line: "6.2.18 No duplicate logins exist in /etc/passwd: FAIL"
+  when:
+    - duplogins.stdout != "0"
+  tags:
+    - 6.2.18
+    - section6
+    - level1
+
+
+- name: 6.2.19 Test to see if any duplicate user groups exist in /etc/group
+  shell: "cat /etc/passwd | cut -f1 -d\":\" | sort -n | uniq -c | while read x ; do   [ -z \"${x}\" ] && break ;   set - $x ;   if [ $1 -gt 1 ]; then      uids=`awk -F: '($1 == n) { print $3 }' n=$2 /etc/passwd | xargs` ;     echo \"Duplicate User Name ($2): ${uids}\" ;   fi ; done | wc -l"
+  register: dupgroups
+  tags:
+    - 6.2.19
+    - section6
+    - level1
+
+- name: 6.2.19 If no duplicate GIDs exist, then record it as PASS
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.19 "
+    line: "6.2.19 No duplicate groups exist in /etc/group: PASS"
+  when:
+    - dupgroups.stdout == "0"
+  tags:
+    - 6.2.19
+    - section6
+    - level1
+
+- name: 6.2.19 If no duplicate GIDs exist, then record it as FAIL
+  lineinfile:
+    path: "{{ ensono_file }}"
+    regexp: "^6.2.19 "
+    line: "6.2.19 No duplicate groups exist in /etc/group: FAIL"
+  when:
+    - dupgroups.stdout != "0"
+  tags:
+    - 6.2.19
+    - section6
+    - level1

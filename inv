@@ -1,2 +1,13 @@
-[cis]
-192.168.23.132
+[rhel7]
+ldap02.clt01.ulx.703.as19229.net
+
+#[rhel5]
+#192.168.23.138  ansible_python_interpreter=/usr/bin/python2.4
+
+[cis:children]
+[rhel7]
+#[rhel5]
+
+## For Testing
+[rhel7:vars]
+ansible_user=ansible

@@ -1,0 +1,38 @@
+
+6.1.2 Check if /etc/passwd permissions are correct:  PASS
+6.1.3 Check if /etc/shadow permissions are correct:  PASS
+6.1.4 Check if /etc/group permissions are correct:  PASS
+6.1.5 Check if /etc/gshadow permissions are correct:  PASS
+6.1.6 Check if /etc/passwd- permissions are correct:  PASS
+6.1.7 Check if /etc/shadow- permissions are correct:  PASS
+6.1.9 Check if /etc/gshadow- permissions are correct:  PASS
+6.1.10 Ensure no world writeable files are found:  PASS
+6.1.11 Ensure no unowned files or directories are found:  PASS
+6.1.12 Ensure no ungrouped files or directories are found:  PASS
+6.2.1 Ensure that there are no accounts with empty passwords:  PASS
+6.2.2 Ensure that there are no NIS markers in /etc/passwd: PASS
+6.2.3 Ensure that there are no NIS markers in /etc/shadow: PASS
+6.2.4 Ensure that there are no NIS markers in /etc/group: PASS
+6.2.5 Ensure only root has uid=0: PASS
+6.2.6 Ensure root path integrity: PASS
+6.2.7 Ensure all users have a homedir: PASS
+6.2.9 Ensure users own their home directories: PASS
+6.2.10 Ensure user dot files not group or other writeable: PASS
+6.2.11 Ensure user .forward files do not exist: PASS
+6.2.12 Ensure user .netrc files do not exist: FAIL
+6.2.14 Ensure user .rhosts files do not exist: PASS
+6.2.15 Ensure all group in /etc/passwd exist in /etc/group: PASS
+6.2.16 No duplicate UIDs exist: PASS
+6.2.17 No duplicate GIDs exist: PASS
+6.2.18 No duplicate logins exist in /etc/passwd: PASS
+6.2.19 No duplicate groups exist in /etc/group: PASS
+5.1.1 Ensure the cronie package is enabled:  PASS
+5.1.2 Check if /etc/crontab is not world readable or writeable:  PASS
+5.1.3 Check if /etc/cron.hourly if other group is not world readable or writeable executable:  PASS
+5.1.4 Check if /etc/cron.daily is not world readable or writeable or executable:  PASS
+5.1.5 Check if /etc/cron.weekly is not world readable or writeable or executable:  PASS
+5.1.6 Check if /etc/cron.monthly is not world readable or writeable or executable:  PASS
+5.1.7 Check if /etc/cron.d is not world readable or writeable or executable:  PASS
+5.2.1 Check if /etc/ssh/sshd_config is not world readable or writeable or executable:  PASS
+5.3.4 Ensure password algorithm is set to SHA512: PASS
+5.4.1.7 Ensure account lockout if 30 days idle: FAIL

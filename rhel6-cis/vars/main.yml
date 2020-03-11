@@ -1,0 +1,9 @@
+---
+# vars file for cis-rhel
+
+ensono_file: /etc/ensono/security/cislevel1-rhel.txt
+ensono_dir: /etc/ensono/security
+audit: TRUE
+cis_conf: /etc/modprobe.d/CIS.conf
+auditsuexe: /etc/ensono/security/audit-suid-executables.txt
+auditsgexe: /etc/ensono/security/audit-sguid-executables.txt

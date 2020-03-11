@@ -1,0 +1,26 @@
+---
+
+- name: Check if ensono dir exit
+  stat:
+    path: "{{ ensono_dir }}"
+  register: checkdir
+
+- name: Check if ensono file exit
+  stat:
+    path: "{{ ensono_dir }}"
+  register: checkfile
+
+
+- name: Create {{ ensono_dir }} directory
+  file:
+    path: "{{ ensono_dir }}"
+    state: directory
+    recurse: yes
+  when: checkdir.stat.exists is defined
+  
+- name: Create {{ ensono_file }} file
+  file:
+    path: "{{ ensono_file }}"
+    state: touch
+  register: ensfile
+  when: checkfile.stat.exists is defined

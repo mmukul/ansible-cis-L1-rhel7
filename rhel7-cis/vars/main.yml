@@ -1,0 +1,17 @@
+---
+# vars file for cis-rhel
+
+ensono_file: /etc/ensono/security/cislevel1-rhel.txt
+ensono_dir: /etc/ensono/security
+audit: TRUE
+remediate: TRUE
+cis_conf: /etc/modprobe.d/CIS.conf
+auditsuexe: /etc/ensono/security/audit-suid-executables.txt
+auditsgexe: /etc/ensono/security/audit-sguid-executables.txt
+remote_audit_log: ms0000.clt01.ulx.703.as19229.net:/data/ansible/cis-level1
+
+# Banner Content (issue, issue.net, motd)
+
+rhel7_banner: |
+   This system is for authorized use only. Any use of the system is subject to monitoring and recording by systems personnel. Anyone using this system expressly consents to such monitoring and recording and is advised that if such monitoring and/or recording reveals possible criminal or unethical activity, system personnel may, in addition to other actions, provide the evidence of such monitoring to law enforcement officials.
+
