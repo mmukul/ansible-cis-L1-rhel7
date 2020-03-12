@@ -3,24 +3,6 @@
 - name: Initialization
   tags:
     - 1.1.1.1
-    - 1.1.1.2
-    - 1.1.1.3
-    - 1.1.1.4
-    - 1.1.1.5
-    - 1.1.1.6
-    - 1.1.1.7
-    - 1.1.1.8
-    - 1.7.1.1
-    - 1.7.1.2
-    - 1.7.1.3
-    - section1
-    - section2
-    - section3
-    - section4
-    - section5
-    - section6
-    - section7
-    - section8
   blockinfile:
     path: "{{ ensono_file }}"
     block: |
@@ -407,6 +389,7 @@
 - name: Record output as FAIL
   lineinfile:
     path: "{{ ensono_file }}"
+    regexp: "^1.1.1.3 "
     line: "1.1.1.3 Ensure jffs2 filesystem is disabled: FAIL"
   when:
      - checkjffs2.stdout != "0"
@@ -469,6 +452,7 @@
 - name: Record output as FAIL
   lineinfile:
     path: "{{ ensono_file }}"
+    regexp: "^1.1.1.4 "
     line: "1.1.1.4 Ensure hfs filesystem is disabled: FAIL"
   when: 
      - checkhfs.stdout != "0"
@@ -526,6 +510,7 @@
 - name: Record output as FAIL
   lineinfile:
     path: "{{ ensono_file }}"
+    regexp: "^1.1.1.5 "
     line: "1.1.1.5 Ensure hfsplus filesystem is disabled: FAIL"
   when: checkhfsplus.stdout != "0"
   tags:
