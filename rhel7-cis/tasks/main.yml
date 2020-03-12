@@ -210,7 +210,7 @@
     line: "install cramfs /bin/true"
   when:
      - cramfs.stat.exists is defined
-     - audit == "TRUE"
+     - remediate
   tags:
      - 1.1.1.1
      - section1
@@ -268,8 +268,8 @@
     regexp: "^1.1.1.1 "
     line: "1.1.1.1 Ensure cramfs filesystem is disabled: PASS"
   when:
-     - checkcramfs.stdout != "0"
-     - cramfsconf.stdout != "0"
+     - checkcramfs.stdout == "0"
+     - cramfsconf.stdout == "1"
      - ls.stdout == "0"
   tags:
      - 1.1.1.1
@@ -279,7 +279,7 @@
 - name: 1.1.1.1 Record output as FAIL
   shell: "echo '1.1.1.1 Ensure cramfs filesystem is disabled: FAIL' > {{ ensono_file }}"
   when:
-     - checkcramfs.stdout == "0"
+     - checkcramfs.stdout != "0"
      - cramfsconf.stdout == "0"
      - ls.stdout != "0"
   tags:
