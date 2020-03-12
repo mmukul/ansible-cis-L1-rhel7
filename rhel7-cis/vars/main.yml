@@ -8,7 +8,6 @@ remediate: TRUE
 cis_conf: /etc/modprobe.d/CIS.conf
 auditsuexe: /etc/ensono/security/audit-suid-executables.txt
 auditsgexe: /etc/ensono/security/audit-sguid-executables.txt
-remote_audit_log: ms0000.clt01.ulx.703.as19229.net:/data/ansible/cis-level1
 
 # Banner Content (issue, issue.net, motd)
 

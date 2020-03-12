@@ -210,11 +210,12 @@
     line: "install cramfs /bin/true"
   when:
      - cramfs.stat.exists is defined
-     - audit == "FALSE"
+     - audit == "TRUE"
   tags:
      - 1.1.1.1
      - section1
      - level1
+
 
 - name: 1.1.1.1 Ensure cramfs is disabled from filesystem
   lineinfile:
@@ -222,7 +223,7 @@
     regexp: "^cramfs"
     state: absent
   when:
-     - audit == "FALSE"
+     - remediate
   tags:
      - 1.1.1.1
      - section1
@@ -248,13 +249,18 @@
   modprobe:
     name: cramfs
     state: absent
+  register: cs
   when:
-    - audit == "FALSE"
+    - remediate
   tags:
     - 1.1.1.1
     - section1
     - level1
 
+- name: Check cramfs filesystem exist
+  shell: "lsmod |grep -c cramfs || true"
+  register: ls
+  tags:  1.1.1.1
 
 - name: 1.1.1.1 Record output as PASS
   lineinfile:
@@ -262,16 +268,20 @@
     regexp: "^1.1.1.1 "
     line: "1.1.1.1 Ensure cramfs filesystem is disabled: PASS"
   when:
-     - checkcramfs.stdout == "0"
+     - checkcramfs.stdout != "0"
+     - cramfsconf.stdout != "0"
+     - ls.stdout == "0"
   tags:
      - 1.1.1.1
      - section1
      - level1
 
 - name: 1.1.1.1 Record output as FAIL
-  shell: "echo '1.1.1.1 Ensure cramfs filesystem is disabled: FAIL' >> {{ ensono_file }}"
+  shell: "echo '1.1.1.1 Ensure cramfs filesystem is disabled: FAIL' > {{ ensono_file }}"
   when:
-     - checkcramfs.stdout != "0"
+     - checkcramfs.stdout == "0"
+     - cramfsconf.stdout == "0"
+     - ls.stdout != "0"
   tags:
      - 1.1.1.1
      - section1
